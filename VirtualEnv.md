@@ -30,7 +30,7 @@ Now ur prompt willhave name of ur virtual env
 When u run ```pip list`` u see packages only within ur environment
 <img width="696" alt="Screenshot 2024-08-31 at 9 05 26 PM" src="https://github.com/user-attachments/assets/d4ff9a53-4d37-4edc-8a03-700e697d892e">
 
-```pip freeze --local >requirements.txt```
+```pip freeze --local > requirements.txt```
 --local adds only the dependencies that are local to ur virtaul env in the requirement.txt file  
 
 <img width="820" alt="Screenshot 2024-08-31 at 9 17 16 PM" src="https://github.com/user-attachments/assets/5d61a3fb-f398-4b31-893d-b50b71615097">
