@@ -1,7 +1,8 @@
 
 ### our my_modules is in same directory as intro.py , so we would be able to directly import that
 ### when we import the file, it runs all the code of the imported file, even the print statement gets imported
-```import my_module
+```
+import my_module
 courses = ['History','Math','Physics']
  index= my_module.find_index(courses,'Math')
 print(index)
@@ -37,13 +38,13 @@ from my_module import find_index as fi
 ```
 import sys
 print(sys.path)  #Gives list of paths on machine where python looks for module when we run an import,
-and it looks in the order that this sys.path gives
+#and it looks in the order that this sys.path gives
 ```
  What alll directories are added to this sys.path list??
- 1st - directory where our current script resides, so u can always import modules residing in same directory
- next:it adds the directories listed in the python path env variable
-then it adds the standard libary directory
- Lastly it adds the side packages directory for 3rd party packages
+*  1st - directory where our current script resides, so u can always import modules residing in same directory
+*  next:it adds the directories listed in the python path env variable
+*  then it adds the standard libary directory
+*  Lastly it adds the side packages directory for 3rd party packages
 
 Now image in if the my_modules file was not present in the same directory, how can we go about import it
 1 Append it to sys.path amnually in the file, where u want to import it
