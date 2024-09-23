@@ -6,10 +6,11 @@ import my_module
 courses = ['History','Math','Physics']
  index= my_module.find_index(courses,'Math')
 print(index)
+#When u run the above code, u would get the following output: 
+# Imported my_module...
+# 1
 ```
-When u run the above code, u would get output: 
-Imported my_module...
-1
+
  so the print statement did get executed
 
  You could also do import my_module as mm
