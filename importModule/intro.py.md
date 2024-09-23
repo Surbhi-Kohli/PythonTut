@@ -68,6 +68,7 @@ append:
 export PYTHONPATH="/Users/surkohli/Desktop/My-Modules"
 control x, control y to save and exit nano
 
+Now u can either run a source command in terminal or reopen the terminal for the changes to be applicable
 
 ## Using some standard library in import
 ```
