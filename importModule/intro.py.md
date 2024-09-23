@@ -11,7 +11,7 @@ print(index)
 # 1
 ```
 
- so the print statement did get executed
+ so the print statement got executed
 
  You could also do import my_module as mm
 ```
