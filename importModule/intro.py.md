@@ -71,6 +71,21 @@ control x, control y to save and exit nano
 Now u can either run a source command in terminal or reopen the terminal for the changes to be applicable
 
 ## Using some standard library in import
+
+In Python, the standard library is a collection of modules and packages that come with Python by default. These modules provide ready-made functionality for tasks like file I/O, string manipulation, regular expressions, working with dates and times, networking, and more.
+
+Some popular modules in the Python standard library include:
+
+os (for interacting with the operating system)
+sys (for system-specific parameters and functions)
+json (for working with JSON data)
+datetime (for working with dates and times)
+math (for mathematical functions)
+random (for generating random numbers)
+
+You do not need to install the standard library—it comes bundled with Python when you install it. You can use these modules by simply importing them in your code.
+
+
 ```
 import random
 import datetime
