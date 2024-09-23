@@ -102,8 +102,8 @@ today   = datetime.date.today()
 print(today)
 print(calendar.isleap(2017))
 print(os.getcwd()) # gives current working directory
-these modules are python files themselves and we can see their path with __file__ attribute
-print(os.__file__)
+these modules are python files themselves and we can see their location  with __file__ attribute
+print(os.__file__) # /opt/anaconda3/lib/python3.12/os.py
 
 
 import antigravity
