@@ -1,6 +1,9 @@
+## Module and PIP in python
+
 We can have 2 types of modules:
-* **Built-in modules** - Shipped with Python,you dont need to install these
-* **External modules** - Installed with the help of PIP.
+* **Built-in modules** - These modules are ready to import and use,shiped with the python interpreter. There is no need to install such modules explicitly. 
+* **External modules** - These modules are imported from a third party file or can be installed using a package manager like pip or conda. Since this code is written by someone else, we can install different versions of a same module with time.
+
 
 ```
 pip help
@@ -14,6 +17,7 @@ RuntimeError: PyPI no longer supports 'pip search' (or XML-RPC search). Please u
 (base) surbhikohli@SURKOHLI-M-9YXF ~ % 
 
 pip install Pympler
+pip install pandas
 ```
 
 ```pip list```
