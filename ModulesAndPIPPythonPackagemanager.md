@@ -1,6 +1,6 @@
 We can have 2 types of modules:
-**Built-in modules** - Shipped with Python,you dont need to install these
-**External modules** - Installed with the help of PIP.
+* **Built-in modules** - Shipped with Python,you dont need to install these
+* **External modules** - Installed with the help of PIP.
 
 ```
 pip help
