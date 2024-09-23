@@ -15,7 +15,8 @@ print(index)
 
  You could also do import my_module as mm
 ```
-from my_module import find_index # this only gives access to find_index function and not anything else in the module
+from my_module import find_index # this only gives access to find_index function and not anything else in the module, eg the test variable
+won't be accessible
 courses = ['History','Math','Physics']
 index= my_module.find_index(courses,'Math')
 print(index)
