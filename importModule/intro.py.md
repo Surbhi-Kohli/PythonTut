@@ -60,9 +60,10 @@ from my_module import find)index,text
 ```
 But this is not a best approach, coz if we import this at multiple locations, we will have to append in all those files
 
-2. setting env variable
-
-nano ~/.bash_profile # ~ takes to home directory
+2. setting python path env variable
+``
+nano ~/.bash_profile  # ~ takes to home directory
+```
 append:
 export PYTHONPATH="/Users/surkohli/Desktop/My-Modules"
 control x, control y to save and exit nano
