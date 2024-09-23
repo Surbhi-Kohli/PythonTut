@@ -19,10 +19,11 @@ from my_module import find_index # this only gives access to find_index function
 courses = ['History','Math','Physics']
 index= my_module.find_index(courses,'Math')
 print(index)
-```
 #### output:
-Imported my_module...
-1
+# Imported my_module...
+# 1
+```
+
 ```
 from my_module import find_index as fi
 ```
