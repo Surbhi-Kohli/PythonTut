@@ -155,4 +155,28 @@ This block is always executed.
 Output 2:
 Enter an integer: 3.142  
 Number entered is not an integer.  
-This block is always executed.  
+This block is always executed.   
+
+The finally block is executed even if we return some value from our try/except block
+```
+def func1():
+  try:
+    l = [1, 5, 6, 7]
+    i = int(input("Enter the index: "))
+    print(l[i])
+    return 1
+  except:
+    print("Some error occurred")
+    return 0
+
+  finally:
+    print("I am always executed")
+  # print("I am always executed")
+
+
+x = func1()
+print(x)
+
+
+
+```
