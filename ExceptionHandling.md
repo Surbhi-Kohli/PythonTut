@@ -157,7 +157,7 @@ Enter an integer: 3.142
 Number entered is not an integer.  
 This block is always executed.   
 
-The finally block is executed even if we return some value from our try/except block
+## The finally block is executed even if we return some value from our try/except block -- Very Important example
 ```
 def func1():
   try:
