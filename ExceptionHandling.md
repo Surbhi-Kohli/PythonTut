@@ -148,11 +148,11 @@ finally:
     print("This block is always executed.")
 ```
 Output 1:
-Enter an integer: 19
-Integer Accepted.
-This block is always executed.
+Enter an integer: 19  
+Integer Accepted.  
+This block is always executed.  
 
 Output 2:
-Enter an integer: 3.142
-Number entered is not an integer.
-This block is always executed.
+Enter an integer: 3.142  
+Number entered is not an integer.  
+This block is always executed.  
