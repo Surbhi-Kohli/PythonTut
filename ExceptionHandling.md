@@ -29,3 +29,25 @@ Enter an integer: 6.022
 Number entered is not an integer.
 ```
 
+
+
+```
+a = input("Enter the number: ")
+print(f"Multiplication table of {a} is: ")
+for i in range(1, 11):
+    print(f"{a} X {i} = {a*i}")
+# Output:
+# Enter the number: 7
+# Multiplication table of 7 is: 
+# 7 X 1 = 7
+# 7 X 2 = 77
+# 7 X 3 = 777
+# 7 X 4 = 7777
+# 7 X 5 = 77777
+# 7 X 6 = 777777
+# 7 X 7 = 7777777
+# 7 X 8 = 77777777
+# 7 X 9 = 777777777
+# 7 X 10 = 7777777777
+```
+
