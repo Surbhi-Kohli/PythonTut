@@ -90,14 +90,14 @@ try:
 except Exception as e:
  print(e)
 
-print("some important lines of got get executed even when above code fails")
+print("some important lines of code get executed even when above code fails")
 print("Program ends")
 
 # Output:
 # Enter the number: sk
 # Multiplication table of sk is: 
 # invalid literal for int() with base 10: 'sk'
-# some important lines of got get executed even when above code fails
+# some important lines of code get executed even when above code fails
 # Program ends
 
 ```
