@@ -157,6 +157,60 @@ Enter an integer: 3.142
 Number entered is not an integer.  
 This block is always executed.   
 
+## Couldn't we just simply add a statement outside instead of having a finally??
+```
+ try:
+    l = [1, 5, 6, 7]
+    i = int(input("Enter the index: "))
+    print(l[i])
+    return 1
+  except:
+    print("Some error occurred")
+    return 0
+
+  finally:
+    print("I am always executed")
+
+## VS
+
+ try:
+    l = [1, 5, 6, 7]
+    i = int(input("Enter the index: "))
+    print(l[i])
+
+  except:
+    print("Some error occurred")
+
+
+    print("I am always executed")
+
+
+```
+Even in non finally case, the statement: I am always executed is printed
+The difference shows in following case when u return something in either try or catch
+```
+def func1():
+  try:
+    l = [1, 5, 6, 7]
+    i = int(input("Enter the index: "))
+    print(l[i])
+    return 1
+  except:
+    print("Some error occurred")
+    return 0
+
+  print("Am I executed??")  # Not printed
+  
+x = func1()
+print(x)
+
+Output:
+Enter the index: h
+Some error occurred
+0
+```
+
+
 ## The finally block is executed even if we return some value from our try/except block -- Very Important example
 ```
 def func1():
@@ -171,7 +225,7 @@ def func1():
 
   finally:
     print("I am always executed")
-  # print("I am always executed")
+
 
 
 x = func1()
