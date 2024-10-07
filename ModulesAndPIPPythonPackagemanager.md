@@ -43,7 +43,8 @@ pip list -o
 ```
 To install updated version of a package
 
-```pip install _u setuptools```
+```pip install _u setuptools```  
+
 what if u want to share the list of ur installed packages list to somoeone else?
 ```
 pip freeze
