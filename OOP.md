@@ -47,7 +47,7 @@ Output:
 Rohan
 20
 ```
-
+```
 class Person:
   name = "Harry"
   occupation = "Software Developer"
@@ -70,8 +70,8 @@ b.occupation = "HR"
 a.info()
 b.info()
 c.info()
-
 ```
+
 self parameter
 The self parameter is a reference to the current instance of the class, and is used to access variables that belongs to the class.
 
