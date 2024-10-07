@@ -82,7 +82,7 @@ ValueError: invalid literal for int() with base 10: 'sk'
 
 
 ```
-= input("Enter the number: ")
+a = input("Enter the number: ")
 print(f"Multiplication table of {a} is: ")
 try:
    for i in range(1, 11):
