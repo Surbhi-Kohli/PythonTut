@@ -102,7 +102,7 @@ script.main()  # Output: "Running script directly"
 This can be useful if you have code that you want to reuse in multiple scripts, but you only want it to run when the script is run directly and not when it's imported as a module.
 
 ### Is it a necessity?
-It's important to note that the if __ name __ == "__ main __" idiom is not required to run a Python script. You can still run a script without it by simply calling the functions or running the code you want to execute directly. However, the if __ name __ == "__ main __" idiom can be a useful tool for organizing and separating code that should be run directly from code that should be imported and used as a module.
+It's important to note that the if __ name __ == "__ main __ " idiom is not required to run a Python script. You can still run a script without it by simply calling the functions or running the code you want to execute directly. However, the if __ name __ == "__ main __" idiom can be a useful tool for organizing and separating code that should be run directly from code that should be imported and used as a module.
 
 In summary, the if __ name __ == "__ main __" idiom is a common pattern used in Python scripts to determine whether the script is being run directly or being imported as a module into another script. It allows you to reuse code from a script by importing it as a module into another script, without running the code in the original script.
 
