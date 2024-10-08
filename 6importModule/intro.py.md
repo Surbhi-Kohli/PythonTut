@@ -49,8 +49,9 @@ print(sys.path)  #Gives list of paths on machine where python looks for module w
 *  then it adds the standard libary directory
 *  Lastly it adds the side packages directory for 3rd party packages
 
-Now image in if the my_modules file was not present in the same directory, how can we go about import it
-1 Append it to sys.path amnually in the file, where u want to import it
+Now image in if the my_modules file was not present in the same directory, how can we go about import it: 
+
+1 Append it to sys.path manually in the file, where u want to import it.
 2.Add it to the environment variables python file
 ```
 import sys
