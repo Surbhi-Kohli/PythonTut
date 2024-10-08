@@ -111,3 +111,16 @@ print(os.__file__) # /opt/anaconda3/lib/python3.12/os.py
 
 
 import antigravity
+## How importing in pyhton works
+Importing in Python is the process of loading code from a Python module into the current script. This allows you to use the functions and variables defined in the module in your current script, as well as any additional modules that the imported module may depend on.
+
+To import a module in Python, you use the import statement followed by the name of the module. For example, to import the math module, which contains a variety of mathematical functions, you would use the following statement:
+```
+import math
+```
+Once a module is imported, you can use any of the functions and variables defined in the module by using the dot notation. For example, to use the sqrt function from the math module, you would write:
+```
+import math
+result = math.sqrt(9)
+print(result)  # Output: 3.0
+```
