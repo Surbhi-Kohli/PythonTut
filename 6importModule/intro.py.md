@@ -31,6 +31,8 @@ from my_module import find_index as fi
  to import everything
 ```
 #from my_module import *
+courses = ['History','Math','Physics']
+index= find_index(courses,'Math') # difficult to find that find_index came from my_module
 ```
  But this is not preferred since it is difficult to track about what came from the imported 
  module and what did not
