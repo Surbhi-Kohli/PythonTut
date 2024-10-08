@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
 If instead, in terminal, you run ``` python harry.py``` the output would be "Hey you are welcome from harry"
 
-## if "__name__ == "__main__" in Python
+## if "__ name __ == "__ main __" in Python
 
 The if __ name __ == "__ main __" idiom is a common pattern used in Python scripts to determine whether the script is being run directly or being imported as a module into another script.
 In Python, the __ name __ variable is a built-in variable that is automatically set to the name of the current module. When a Python script is run directly, the __ name __ variable is set to the 
