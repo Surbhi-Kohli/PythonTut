@@ -154,7 +154,7 @@ class Details:
 obj1 = Details("Crab", "Crustaceans")
 print(obj1.animal, "belongs to the", obj1.group, "group.")
 ```
-### Output:
+#### Output:
 ```
 Crab belongs to the Crustaceans group.
 ```
@@ -168,7 +168,7 @@ class Details:
     print("animal Crab belongs to Crustaceans group")
 obj1=Details()
 ```
-### Output:
+#### Output:
 ```
 animal Crab belongs to Crustaceans group
 ```
