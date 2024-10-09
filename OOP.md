@@ -88,3 +88,87 @@ a.info() # Shubham is a Accountant
 b.info() # Nitika is a HR
 c.info() # Harry is a Software Developer
 ```
+## Constructors in Python
+A constructor is a special method in a class used to create and initialize an object of a class. There are different types of constructors. Constructor is invoked automatically when an object of a class is created.
+
+A constructor is a unique function that gets called automatically when an object is created of a class. The main purpose of a constructor is to initialize or assign values to the data members of that class. It cannot return any value other than None.
+
+### Syntax of Python Constructor
+```
+def __init__(self):
+	# initializations
+```
+init is one of the reserved functions in Python. In Object Oriented Programming, it is known as a constructor.
+
+### Explanation with code:
+```
+class Person:
+  name:"Harry"
+  occupation:"Developer"
+
+  def info(self): # **Very Important:Every method of a class should have self as paramter, with few exceptions
+   print(f"{self.name} is a {self.occ}")
+
+ a = Person() # Harry is a Developer
+ print(a.name) # Harry
+ a.info() # self is automatically considered as 'a' and passed
+
+```
+But what if we want to create multiple Persons, we will have to explicitly set their name , occupation etc. Better option would be to use a constructor.
+
+```
+class Person:
+
+  def __init__(self,name,occupation):
+   print("Hey I am a person constructor , called every time a new Person object is created")
+   self.name = name
+   self.occ = occupation
+
+  def info(self): # **Very Important:Every method of a class should have self as paramter, with few exceptions
+   print(f"{self.name} is a {self.occ}")
+
+ a = Person("Harry","Aalsi developer")
+ b = Person("Tom","Rotlu developer")
+ 
+ a.info() # Harry is a Aalsi developer
+ b.info() # Tom is a Rotlu developer
+ c =  Person() # Error: __init__ missing 2 required positional arguments : "name"  and "occupation"
+ c = Person(1,2 ,3)# TypeError: __init__ takes 3 positional arguments but 4 were given , (since self is auto passed, total arguments became 4)
+
+```
+### Types of Constructors in Python
+
+1. Parameterized Constructor
+2. Default Constructor
+ ### Parameterized Constructor in Python
+When the constructor accepts arguments along with self, it is known as parameterized constructor.
+These arguments can be used inside the class to assign the values to the data members.
+
+Example:
+```
+class Details:
+    def __init__(self, animal, group):
+        self.animal = animal
+        self.group = group
+
+obj1 = Details("Crab", "Crustaceans")
+print(obj1.animal, "belongs to the", obj1.group, "group.")
+```
+### Output:
+```
+Crab belongs to the Crustaceans group.
+```
+### Default Constructor in Python
+When the constructor doesn't accept any arguments from the object and has only one argument, self, in the constructor, it is known as a Default constructor.
+
+Example:
+```
+class Details:
+  def __init__(self):
+    print("animal Crab belongs to Crustaceans group")
+obj1=Details()
+```
+### Output:
+```
+animal Crab belongs to Crustaceans group
+```
