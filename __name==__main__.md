@@ -54,7 +54,7 @@ harry.py:
 def welcome():
   print("Hey you are welcome from harry")
 
-print(__name__) #"__main__" in case this file is called as python harry.py or else if u run as python main.py , value is harry
+print(__name__) #"__main__" in case this file is called as python harry.py or else if u run as python main.py , value is harry(name of the file where this code resides)
 
 if __name__ == "__main__":
   welcome() # Only execute welcome if __name__ == "main" , ie the welcome function is called from within this file only and not from outside
