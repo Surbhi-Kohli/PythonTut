@@ -110,6 +110,9 @@ def add(a,b):
   print(a+b)
 
 add(1,2)
+# Good morning
+# 3
+# Thanks for using this function
 ```
 Or without the '@'way
 ```
@@ -124,6 +127,9 @@ def add(a,b):
   print(a+b)
 
 greet(add)(1,2) # Currying
+# Good morning
+# 3
+# Thanks for using this function
 
 ```
 ### Conclusion
