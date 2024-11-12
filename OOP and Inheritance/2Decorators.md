@@ -64,6 +64,68 @@ def my_function(a, b):
 ```
 In this example, the log_function_call decorator takes a function as an argument and returns a new function that logs the function call before and after the original function is called.
 
+#### Easier example to understand the passing of *args and *kwargs here:
+ ```
+def greet(fx):
+  def mfx():
+    print("Good morning")
+    fx()
+    print("Thanks for using this function")
+ return mfx
+
+@greet
+def add(a,b):
+  print(a+b)
+
+add()
+# Output for above add()
+# python test.py
+# Good morning
+# Traceback (most recent call last):
+#  File "/Users/surbhikohli/src/test.py", line 12, in <module>
+#    add()
+#  File "/Users/surbhikohli/src/test.py", line 4, in mfx
+#    fx()
+# TypeError: add() missing 2 required positional arguments: 'a' and 'b'
+
+
+# in case u do:
+greet(add)(1,2)
+#    Output
+#    greet(add)(1,2)
+#    TypeError: greet.<locals>.mfx() takes 0 positional arguments but 2 were given
+ ```
+So we need to have the function within the decorator that accepts the passed arguments
+
+```
+def greet(fx):
+  def mfx(*args, **kwargs):
+    print("Good morning")
+    fx(*args, **kwargs)
+    print("Thanks for using this function")
+ return mfx
+
+@greet
+def add(a,b):
+  print(a+b)
+
+add(1,2)
+```
+Or without the '@'way
+```
+def greet(fx):
+  def mfx(*args, **kwargs):
+    print("Good morning")
+    fx(*args, **kwargs)
+    print("Thanks for using this function")
+ return mfx
+
+def add(a,b):
+  print(a+b)
+
+greet(add)(1,2) # Currying
+
+```
 ### Conclusion
 Decorators are a powerful and flexible feature in Python that can be used to add functionality to functions and methods without modifying their source code. They are a great tool for separating concerns, reducing code duplication, and making your code more readable and maintainable.
 
