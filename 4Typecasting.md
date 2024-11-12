@@ -30,16 +30,16 @@ Example of implicit type casting:
 # Python automatically converts
 # a to int
 a = 7
-print(type(a))
+print(type(a)) <class 'int'>
  
 # Python automatically converts b to float
 b = 3.0
-print(type(b))
+print(type(b)) <class 'float'>
  
 # Python automatically converts c to float as it is a float addition
 c = a + b
 print(c)
-print(type(c))
+print(type(c)) <class 'float'>
 ```
 #### Ouput:
 ```
