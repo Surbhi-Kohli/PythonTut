@@ -62,4 +62,19 @@ c = 1.9
 d = 8
 
 print(c + d) # 9.9
+
+
+e="hello1"
+f="2"
+print(int(e) + int(f)) #
+
+>>> e="hello1"
+>>> f="2"
+>>> print(int(e) + int(f))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+    print(int(e) + int(f))
+          ~~~^^^
+ValueError: invalid literal for int() with base 10: 'hello1'
+>>> 
 ```
