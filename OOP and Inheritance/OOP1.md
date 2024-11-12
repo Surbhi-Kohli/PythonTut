@@ -173,3 +173,8 @@ obj1=Details()
 ```
 animal Crab belongs to Crustaceans group
 ```
+### Extra Info
+```
+class Employees:
+pass # Way to leave a class empty
+```
