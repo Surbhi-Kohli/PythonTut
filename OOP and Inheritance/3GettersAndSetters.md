@@ -1,6 +1,7 @@
 # Getters:
 
-In simpler terms getters help you to access a function's return value as an object's property
+In simpler terms getters help you to access a function's return value as an object's property.
+Getter method behaves like a property instead of as a method.
 
 Getters in Python are methods that are used to access the values of an object's properties. They are used to return the value of a specific property, and are typically defined using the @property decorator. Here is an example of a simple class with a getter method:
 ```
