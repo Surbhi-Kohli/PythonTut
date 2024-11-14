@@ -7,7 +7,9 @@ implementing the concepts of inheritance.
 Types of access specifiers
   * Public access modifier
   * Private access modifier
-  * Protected access modifier
+  * Protected access modifier - Can be accessed 
+    
+Python does not have public, private , protected keywords but still these concepts exist.
 
 ## Public Access Specifier in Python
 All the variables and methods (member functions) in python are by default public. Any instance variable in a class followed by the ‘self’ keyword 
@@ -25,12 +27,37 @@ print(obj.age) # 21
 print(obj.name) # Harry
 
 ```
+Another example:
+```
+class Employee:
+ pass
+
+a = Employee()
+a.emp1 = 5 #Able to access emp1
+```
 
 ## Private Access Modifier
 By definition, Private members of a class (variables or methods) in OOP are those members which are only accessible inside the class. We cannot use private members outside of class.
 In Python, there is no strict concept of "private" access modifiers like in some other programming languages.
 However, a convention has been established to indicate that a variable or method should be considered private by prefixing its name with a double underscore (__).
 This is known as a "weak internal use indicator" and it is a convention only, not a strict rule. Code outside the class can still access these "private" variables and methods, but it is generally understood that they should not be accessed or modified.
+
+Example:
+```
+class Employee:
+ def __init__(self):
+   self.__name= "Harry" # __ is an indication of private variable
+
+a = Employee()
+print(a.__name)# Attribute error: 'Employee' object has no attribute '__name'
+# Cannot be accessed directly
+print(a.__Employee__name)# Harry # Can be accessed  indirectly by name mangling
+print(a.__dir__()) # dir gives all attributes and methods available on 'a'.It shows that a has _Employee__name
+# ['_Employee__name', '__module__', '__init__', '__dict__', '__weakref__', '__doc__', '__new__', '__repr__', '__hash__', '__str__', '__getattribute__', '__setattr__', '__delattr__', '__lt__', '__le__', '__eq__', '__ne__', '__gt__', '__ge__', '__reduce_ex__', '__reduce__', '__subclasshook__', '__init_subclass__', '__format__', '__sizeof__', '__dir__', '__class__']
+
+
+```
+
 
 Example:
 ```
@@ -41,10 +68,12 @@ class Student:
         def __funName(self):  # An indication of private function
             self.y = 34
             print(self.y)
+
 class Subject(Student):
     pass
 obj = Student(21,"Harry")
 obj1 = Subject
+
 # calling by object of class Student
 print(obj.__age)
 print(obj.__funName())
@@ -60,7 +89,7 @@ print(obj1.__funName())
 ```
 Private members of a class cannot be accessed or inherited outside of class. If we try to access or to inherit the properties of private members to child class (derived class). Then it will show the error.
 
-## Name mangling
+### Name mangling
 Name mangling in Python is a technique used to protect class-private and superclass-private attributes from being accidentally overwritten by subclasses. Names of class-private and superclass-private attributes are transformed by the addition of a single leading underscore and a double leading underscore respectively.
 
 ```
@@ -75,3 +104,38 @@ print(my_object._MyClass__mangled_attribute) # Output: I am a mangled attribute
 ```
 
 In the example above, the attribute _nonmangled_attribute is marked as nonmangled by convention, but can still be accessed from outside the class. The attribute __mangled_attribute is private and its name is "mangled" to _MyClass__mangled_attribute, so it can't be accessed directly from outside the class, but you can access it by calling _MyClass__mangled_attribute
+
+## Protected Access Modifier
+In object-oriented programming (OOP), the term "protected" is used to describe a member (i.e., a method or attribute) of a class that is intended to be accessed only by the class itself and its subclasses. In Python, the convention for indicating that a member is protected is to prefix its name with a single underscore (_). For example, if a class has a method called _my_method, it is indicating that the method should only be accessed by the class itself and its subclasses.
+
+It's important to note that the single underscore is just a naming convention, and does not actually provide any protection or restrict access to the member. The syntax we follow to make any variable protected is to write variable name followed by a single underscore (_) ie. _varName.
+
+Example:
+```
+class Student:
+    def __init__(self):
+        self._name = "Harry"
+    def _funName(self):      # protected method
+        return "CodeWithHarry"
+class Subject(Student):       #inherited class
+    pass
+
+obj = Student()
+obj1 = Subject()
+print(dir(obj)) #
+#['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_funName', '_name']
+# calling by object of Student class
+print(obj._name)      
+print(obj._funName())     
+# calling by object of Subject class
+print(obj1._name)    
+print(obj1._funName())
+
+ # Output:
+ # Harry
+ # CodeWithHarry
+ # Harry
+ # CodeWithHarry
+```
+This is just convention.SOme ppl may say that we will use _var is a private , we wont use mangling.
+Python does not enforce anything.It just does mangling with __. Ypu can enforce guidlines as per ur choice.
