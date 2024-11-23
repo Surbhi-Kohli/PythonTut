@@ -60,6 +60,7 @@ str_input ="Harry-15000"
 emp2 = MyEmployee(str_input.split("-")[0],(int(str_input.split("-")[1])))
 print(emp2.name,emp2.salary)  # Output: Harry 15000
 
+# Better way: Use the classmethod as an alternate constructor
 str_input3 = "Tom-18000"
 emp3 = MyEmployee.alt_constructor_str(str_input3)
 print(emp3.name,emp3.salary) # Output: Tom 18000
