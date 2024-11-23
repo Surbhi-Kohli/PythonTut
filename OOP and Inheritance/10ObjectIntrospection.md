@@ -38,6 +38,8 @@ Example:
 ```
 print(help(str))
 Help on class str in module builtins:
+
+# Following is the output :
 class str(object)
  |  str(object='') -> str
  |  str(bytes_or_buffer[, encoding[, errors]]) -> str
@@ -59,7 +61,7 @@ class Person:
 p = Person("John", 30)
 print(p.__dict__)
 print(help(Person))
-
+# Following is the output :
 class Person(builtins.object)
  |  Person(name, age)
  |  
