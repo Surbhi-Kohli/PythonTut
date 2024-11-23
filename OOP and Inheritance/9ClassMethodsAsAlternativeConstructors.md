@@ -3,15 +3,15 @@ In object-oriented programming, the term "constructor" refers to a special type 
 
 However, there are times when you may want to create an object in a different way, or with different initial values, than what is provided by the default constructor. This is where class methods can be used as alternative constructors.
 
-A class method belongs to the class rather than to an instance of the class. One common use case for class methods as alternative constructors is when you want to create an object from data that is stored in a different format, such as a string or a dictionary. For example, consider a class named "Person" that has two attributes: "name" and "age". The default constructor for the class might look like this:
+A class method belongs to the class rather than to an instance of the class. One common use case for class methods as alternative constructors is when you want to create an object from data that is stored in a different format, such as a string or a dictionary. For example, consider a class named "MyEmployee" that has two attributes: "name" and "salary". The default constructor for the class might look like this:
 ```
 
-class Person:
-    def __init__(self, name, age):
+class MyEmployee:
+    def __init__(self, name, salary):
         self.name = name
-        self.age = age
+        self.salary = salary
 ```
-But what if you want to create a Person object from a string that contains the person's name and age, separated by a - in case thats how you get your input? 
+But what if you want to create a MyEmployee object from a string that contains the person's name and salary, separated by a - in case thats how you get your input.
 ```
 class MyEmployee:
     def __init__(self,name,salary):
