@@ -61,7 +61,22 @@ print(MyEmployee.company) # Tesla
 ```
 
 # Class Method vs Static Method
-Comparison Table
+### Class Method
+A class method is bound to the class, not the instance. It is defined using the @classmethod decorator and takes the class (cls) as its first parameter.
+
+#### Key Characteristics:
+* Access to Class-Level Data: It can access and modify the class state via cls.
+* Shared Across All Instances: It works with the class as a whole rather than individual instances.
+Use Case: Useful for factory methods or when you want to operate on class variables.
+
+### Static Method
+A static method does not depend on the instance or the class. It is defined using the @staticmethod decorator and does not take self or cls as its first parameter.
+
+#### Key Characteristics:
+No Access to Class or Instance: It cannot modify the class or instance state. It behaves like a plain function but is logically grouped within a class.
+Use Case: Useful for utility functions that perform a task relevant to the class but don't need to interact with class-level or instance-level data.
+
+### Comparison Table
 
 Feature	| Class Method	| Static Method
 ------- |  --------  | ----------
