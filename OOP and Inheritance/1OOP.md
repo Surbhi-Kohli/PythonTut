@@ -133,6 +133,8 @@ class Person:
  
  a.info() # Harry is a Aalsi developer
  b.info() # Tom is a Rotlu developer
+# a.info() = Person.info(a)
+# b.info() is Person.info(b) under the hood 
  c =  Person() # Error: __init__ missing 2 required positional arguments : "name"  and "occupation"
  c = Person(1,2 ,3)# TypeError: __init__ takes 3 positional arguments but 4 were given , (since self is auto passed, total arguments became 4)
 
