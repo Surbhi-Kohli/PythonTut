@@ -64,7 +64,7 @@ print(MyEmployee.company) # Tesla
 Comparison Table
 
 Feature	| Class Method	| Static Method
--------- --------------   --------------
+------- |  --------  | ----------
 Decorator |	@classmethod |	@staticmethod
 First Parameter	| cls (class itself) |	None
 Access Class Variables	|Yes |	No
