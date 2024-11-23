@@ -23,18 +23,20 @@ In the example above, the class_variable is shared among all instances of the cl
 ## Instance Variables
 Instance variables are defined at the instance level and are unique to each instance of the class. They are defined inside the init method and are usually used to store information that is specific to each instance of the class. For example, an instance variable can be used to store the name of an employee in a class that represents an employee.
 ```
-class MyClass:
+class MyEmployee:
     def __init__(self, name):
         self.name = name
+        self.raise_amount = 0.05
+    def print_details(self):
+        print(f"The name of the employee is {self.name} with raise amount:{self.raise_amount}")
         
-    def print_name(self):
-        print(self.name)
-obj1 = MyClass("John")
-obj2 = MyClass("Jane")
-obj1.print_name() # Output: John
-obj2.print_name() # Output: Jane
+obj1 = MyEmployee("John")
+obj1.raise_amount = 0.08
+obj2 = MyEmployee("Jane")
+obj1.print_details() # Output: The name of the employee is John with raise amount:0.08
+obj2.print_details() # Output: The name of the employee is Jane with raise amount:0.05
 ```
-In the example above, each instance of the class MyClass has its own value for the name variable. When we call the print_name method on obj1 and obj2, we get different values for name.
+In the example above, each instance of the class MyEmployee has its own value for the name variable. When we call the print_details method on obj1 and obj2, we get different values for name and raise.
 
 ## Summary
 In summary, class variables are shared among all instances of a class and are used to store information that is common to all instances. Instance variables are unique to each instance of a class and are used to store information that is specific to each instance. Understanding the difference between class variables and instance variables is crucial for writing efficient and maintainable code in Python.
