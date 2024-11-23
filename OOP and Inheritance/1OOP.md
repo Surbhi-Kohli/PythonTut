@@ -86,8 +86,11 @@ b.occupation = "HR"
 
 # print(a.name, a.occupation)
 a.info() # Shubham is a Accountant
+# a.info() is under the hood Person.info(a)
 b.info() # Nitika is a HR
+# b.info() is under the hood Person.info(b), hence the self argument
 c.info() # Harry is a Software Developer
+
 ```
 ## Constructors in Python
 A constructor is a special method in a class used to create and initialize an object of a class. There are different types of constructors. Constructor is invoked automatically when an object of a class is created.
