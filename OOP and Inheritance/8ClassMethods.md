@@ -17,7 +17,47 @@ In this example, the "factory_method" is a class method that takes two arguments
 
 It's important to note that class methods cannot modify the class in any way. If you need to modify the class, you should use a class level variable instead.
 
+```
+class MyEmployee:
+    company="Apple"
+    def show_employee(self):
+        print(f"The name is {self.name} and company is {self.company}")
+        
+    def change_company(cls,new_company_name):
+        cls.company = new_company_name
+        
+        
+        
+emp1 = MyEmployee()
+emp1.name = "Harry"
+emp1.show_employee()
+emp1.change_company("Tesla") # This did not change the class variable's value
+# Rather cls = self = instance of class which is emp1, which gets a variable of  company set to Tesla
+emp1.show_employee()
+print(MyEmployee.company)
+# If we want to update the compnay of class , we will use Class Method
+
+```
+### Using class method
+```
+class MyEmployee:
+    company="Apple"
+    def show_employee(self):
+        print(f"The name is {self.name} and company is {self.company}")
+    @classmethod   
+    def change_company(cls,new_company_name):# The cls here is the class itself and not its instance/object
+        cls.company = new_company_name
+        
+        
+        
+emp1 = MyEmployee()
+emp1.name = "Harry"
+emp1.show_employee() # Output:The name is Harry and company is Apple
+emp1.change_company("Tesla")
+emp1.show_employee() # Output: The name is Harry and company is Tesla
+print(MyEmployee.company) # Tesla
 
 
+```
 
 # Class Method vs Static Method
