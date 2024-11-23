@@ -38,6 +38,34 @@ obj2.print_details() # Output: The name of the employee is Jane with raise amoun
 ```
 In the example above, each instance of the class MyEmployee has its own value for the name variable. When we call the print_details method on obj1 and obj2, we get different values for name and raise.
 
+## Final code with both instance and class variables:
+```
+class MyEmployee:
+    no_of_employees = 0  # Class variable to count the number of employees
+
+    def __init__(self, name):
+        self.name = name
+        self.raise_amount = 0.05
+        MyEmployee.no_of_employees += 1  # Increment class variable when a new object is created
+
+    def print_details(self):
+        print(f"The name of the employee is {self.name} with raise amount: {self.raise_amount}")
+
+
+# Creating employee objects
+obj1 = MyEmployee("John")
+obj1.raise_amount = 0.08  # Updating the raise amount for obj1
+obj2 = MyEmployee("Jane")
+
+# Print details of each employee
+obj1.print_details()  # Output: The name of the employee is John with raise amount: 0.08
+obj2.print_details()  # Output: The name of the employee is Jane with raise amount: 0.05
+
+# Print total number of employees
+print(MyEmployee.no_of_employees)  # Output: 2
+```
+
+
 ## Summary
 In summary, class variables are shared among all instances of a class and are used to store information that is common to all instances. Instance variables are unique to each instance of a class and are used to store information that is specific to each instance. Understanding the difference between class variables and instance variables is crucial for writing efficient and maintainable code in Python.
 
