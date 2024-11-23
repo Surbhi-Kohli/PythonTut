@@ -20,4 +20,4 @@ It's important to note that class methods cannot modify the class in any way. If
 
 
 
-# Class Variable vs static variable
+# Class Method vs Static Method
