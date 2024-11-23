@@ -73,7 +73,7 @@ Use Case: Useful for factory methods or when you want to operate on class variab
 A static method does not depend on the instance or the class. It is defined using the @staticmethod decorator and does not take self or cls as its first parameter.
 
 #### Key Characteristics:
-No Access to Class or Instance: It cannot modify the class or instance state. It behaves like a plain function but is logically grouped within a class.
+* No Access to Class or Instance: It cannot modify the class or instance state. It behaves like a plain function but is logically grouped within a class.
 Use Case: Useful for utility functions that perform a task relevant to the class but don't need to interact with class-level or instance-level data.
 
 ### Comparison Table
