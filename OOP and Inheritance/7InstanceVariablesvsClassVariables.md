@@ -1,4 +1,4 @@
-## Instance vs class variables
+## Instance vs Class variables
 In Python, variables can be defined at the class level or at the instance level. Understanding the difference between these types of variables is crucial for writing efficient and maintainable code.
 
 ## Class Variables
