@@ -19,15 +19,15 @@ class MyEmployee:
         self.salary = salary
         
 emp1 = MyEmployee("John",12000)    
-print(emp1.name,emp1.salary)        
+print(emp1.name,emp1.salary) # John 12000        
 
 ## If data comes in form of string: "Harry-15000", you have to parse that string and get individual data to pass to constructor
 str_input ="Harry-15000"
 emp2 = MyEmployee(str_input.split("-")[0],(int(str_input.split("-")[1])))
-print(emp2.name,emp2.salary)
+print(emp2.name,emp2.salary) # Harry 15000
 
 ```
-If we try to optimize this, update the __ init __ to accept a string and that has a logic to do splitting etc, that would hamper our normal initialization
+If we try to optimize this, update the constructor __ init __ to accept a string and that has a logic to do splitting etc, that would hamper our normal initialization
 ```
 class MyEmployee:
     def __init__(self,str):
@@ -40,4 +40,29 @@ print(emp1.name,emp2.salary) # Harry 15000
 
 # But now how can we do:
 # emp2 = MyEmployee("John",12000)????
+```
+So the above is not a good way to go about doing things.So we will use class methods as alternative constructors.
+
+```
+class MyEmployee:
+    def __init__(self,name,salary):
+        self.name = name
+        self.salary = salary
+    @classmethod
+    def alt_constructor_str(cls,str):
+        return cls(str.split("-")[0],(int(str.split("-")[1])))
+        
+emp1 = MyEmployee("John",12000)    
+print(emp1.name,emp1.salary) # Output: John 12000    
+
+## If data comes in form of string: "Harry-15000", you have to parse that string and get individual data to pass to constructor
+str_input ="Harry-15000"
+emp2 = MyEmployee(str_input.split("-")[0],(int(str_input.split("-")[1])))
+print(emp2.name,emp2.salary)  # Output: Harry 15000
+
+str_input3 = "Tom-18000"
+emp3 = MyEmployee.alt_constructor_str(str_input3)
+print(emp3.name,emp3.salary) # Output: Tom 18000
+
+
 ```
