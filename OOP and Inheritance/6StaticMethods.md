@@ -21,3 +21,5 @@ print(mathOb.mathAdd(4,6)) # Good morning, here take your sum: 10
 print(mathOb.addUtility(7,8)) # Good morning, here take your sum: 15
 
 ```
+Q: When u define a method inside a class, is it necessary to provide self?
+A: No, self would not be required in case of a static method
