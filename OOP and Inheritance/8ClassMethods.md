@@ -61,3 +61,13 @@ print(MyEmployee.company) # Tesla
 ```
 
 # Class Method vs Static Method
+Comparison Table
+
+Feature	| Class Method	| Static Method
+-------- --------------   --------------
+Decorator |	@classmethod |	@staticmethod
+First Parameter	| cls (class itself) |	None
+Access Class Variables	|Yes |	No
+Access Instance Variables	|No|	No
+Use Case	|Factory methods, class-level operations|	Utility functions, independent of class/instance
+
