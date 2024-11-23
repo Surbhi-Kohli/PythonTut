@@ -42,27 +42,36 @@ In the example above, each instance of the class MyEmployee has its own value fo
 ```
 class MyEmployee:
     no_of_employees = 0  # Class variable to count the number of employees
-
+    company_name = "Apple"
     def __init__(self, name):
         self.name = name
         self.raise_amount = 0.05
         MyEmployee.no_of_employees += 1  # Increment class variable when a new object is created
 
     def print_details(self):
-        print(f"The name of the employee is {self.name} with raise amount: {self.raise_amount}")
+        print(f"The name of the employee is {self.name} with raise amount: {self.raise_amount} in company {self.company_name}") #If we do MyEmployee.company_name, it wil not take into consideration, in case u create instance variable of company_name for an employee eg like for Rohan
 
 
 # Creating employee objects
-obj1 = MyEmployee("John")
-obj1.raise_amount = 0.08  # Updating the raise amount for obj1
-obj2 = MyEmployee("Jane")
+emp1 = MyEmployee("John")
+emp1.raise_amount = 0.08  # Updating the raise amount for obj1
+emp2 = MyEmployee("Jane")
+emp3 = MyEmployee("Rohan")
 
+emp3.company_name="Apple India" # we created instance variable of company_name for emp3, hence that will be used in print_details instead of the class variable,as that will take precedence
 # Print details of each employee
-obj1.print_details()  # Output: The name of the employee is John with raise amount: 0.08
-obj2.print_details()  # Output: The name of the employee is Jane with raise amount: 0.05
-
+emp1.print_details()  # Output: The name of the employee is John with raise amount: 0.08
+emp2.print_details()  # Output: The name of the employee is Jane with raise amount: 0.05
+emp3.print_details()
+print(emp2.company_name) # First instance variable is checked, since that does not exist on emp2, class variable returned
+emp1.print_details()
 # Print total number of employees
-print(MyEmployee.no_of_employees)  # Output: 2
+print(MyEmployee.no_of_employees)  # Output: 3
+MyEmployee.company_name="Google" 
+emp1.print_details() #Output: The name of the employee is John with raise amount: 0.08 in company Google
+emp2.print_details() # Output: The name of the employee is Jane with raise amount: 0.05 in company Google
+emp3.print_details() # Output: The name of the employee is Rohan with raise amount: 0.05 in company Apple India
+
 ```
 
 
