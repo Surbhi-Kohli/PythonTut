@@ -23,11 +23,107 @@ The call method is used to make an object callable, meaning that you can pass it
 
 These are just a few of the many magic methods available in Python. They are incredibly powerful tools that allow you to customize the behaviour of your objects, and can make your code much cleaner and easier to understand. So if you’re looking for a way to take your Python code to the next level, take some time to learn about these magic methods.
 
+Think of a use case for _ _ call _ _
 Code Example:
 
 ```
 # emp.py
 
+class Employee:
+
+  def __init__(self, name):
+    self.name = name
+
+  def __len__(self):
+    i = 0
+    for c in self.name:
+      i = i + 1
+    return i
+
+  def __str__(self):
+    return f"The name of the employee is {self.name} str"
+
+  def __call__(self):
+    print("Hey I am good")
+
+```
+
+---
+```
+# main.py
+
+from emp import Employee
+
+e = Employee("Harry")
+print(str(e)) # The name of the employee is Harry str
+# Or
+print(e) The name of the employee is Harry str
+```
+### What if u had both repr and str
+```
+class Employee:
+
+  def __init__(self, name):
+    self.name = name
+
+  def __len__(self):
+    i = 0
+    for c in self.name:
+      i = i + 1
+    return i
+
+  def __str__(self):
+    return f"The name of the employee is {self.name} str"
+    
+  def __repr__(self):
+    return f"The name of the employee is {self.name} repr"
+
+  def __call__(self):
+    print("Hey I am good")
+
+```
+```
+# main.py
+
+from emp import Employee
+
+e = Employee("Harry")
+print(e) The name of the employee is Harry str # str is called instead of repr
+```
+
+
+### What if u have repr only
+```
+class Employee:
+
+  def __init__(self, name):
+    self.name = name
+
+  def __len__(self):
+    i = 0
+    for c in self.name:
+      i = i + 1
+    return i
+    
+  def __repr__(self):
+    return f"The name of the employee is {self.name} repr"
+
+  def __call__(self):
+    print("Hey I am good")
+```
+
+```
+# main.py
+
+from emp import Employee
+
+e = Employee("Harry")
+print(e) # The name of the employee is Harry repr ## Fallback to repr in case str is not present
+
+```
+Final Code:
+```
+emp.py
 class Employee:
 
   def __init__(self, name):
@@ -49,17 +145,17 @@ class Employee:
     print("Hey I am good")
 
 ```
-
----
 ```
-# main.py
-
+main.py
 from emp import Employee
 
 e = Employee("Harry")
-print(str(e))
-print(repr(e))
+print(str(e)) # The name of the employee is Harry str
+print(repr(e)) # Employee('Harry)
+print(e) # The name of the employee is Harry str
 # print(e.name)
 # print(len(e))
-e()
+# this calls _ _ call _ _
+e()# Hey I am good 
+
 ```
