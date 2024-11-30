@@ -32,7 +32,7 @@ class Person:
 p = Person("John", 30)
 print(p.__dict__) # {'name': 'John', 'age': 30, 'version': 1}
 ```
-## The help() mehthod
+## The help() method
 help(): The help() function is used to get help documentation for an object, including a description of its attributes and methods.
 Example:
 ```
