@@ -11,18 +11,50 @@ class ParentClass:
     def parent_method(self):
         print("This is the parent method.")
 class ChildClass(ParentClass):
+ 
     def child_method(self):
         print("This is the child method.")
         super().parent_method()
+        
 child_object = ChildClass()
 child_object.child_method()
+child_object.parent_method()
 ```
 Output:
 ```
 This is the child method.
 This is the parent method.
+This is the parent method.
 ```
 In this example, we have a ParentClass with a parent_method and a ChildClass that inherits from ParentClass and overrides the child_method. When the child_method is called, it first prints "This is the child method." and then calls the parent_method using the super() keyword.
+Also when parent_method is called via child_object, it calls the ParentClass's parent_method.
+
+
+Consider the following example:
+
+```
+class ParentClass:
+    def parent_method(self):
+        print("This is the parent method.")
+class ChildClass(ParentClass):
+    def parent_method(self):
+        print("This is the parent method within child class")
+        super().parent_method()
+    def child_method(self):
+        print("This is the child method.")
+        super().parent_method()
+        
+child_object = ChildClass()
+child_object.child_method()
+child_object.parent_method()
+
+# Output:
+# This is the child method.
+# This is the parent method.
+# This is the parent method within child class
+# This is the parent method.
+
+```
 
 The super() keyword is also useful when a class inherits from multiple parent classes. In this case, you can specify the parent class from which you want to call the method.
 
