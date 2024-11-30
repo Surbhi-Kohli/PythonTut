@@ -22,3 +22,44 @@ _ _ call_ _ method
 The call method is used to make an object callable, meaning that you can pass it as a parameter to a function and it will be executed when the function is called. This is an incredibly powerful tool that allows you to create objects that behave like functions.
 
 These are just a few of the many magic methods available in Python. They are incredibly powerful tools that allow you to customize the behaviour of your objects, and can make your code much cleaner and easier to understand. So if you’re looking for a way to take your Python code to the next level, take some time to learn about these magic methods.
+
+Code Example:
+
+```
+# emp.py
+
+class Employee:
+
+  def __init__(self, name):
+    self.name = name
+
+  def __len__(self):
+    i = 0
+    for c in self.name:
+      i = i + 1
+    return i
+
+  def __str__(self):
+    return f"The name of the employee is {self.name} str"
+    
+  def __repr__(self):
+    return f"Employee('{self.name}')"
+
+  def __call__(self):
+    print("Hey I am good")
+
+```
+
+---
+```
+# main.py
+
+from emp import Employee
+
+e = Employee("Harry")
+print(str(e))
+print(repr(e))
+# print(e.name)
+# print(len(e))
+e()
+```
