@@ -116,8 +116,8 @@ child = Child()
 # Parent1 initialized
 # Child initialized
 ```
-Reason
-When super().__init__() is used in the Child class, it follows the method resolution order (MRO) for the Child class. The MRO determines the order in which parent class constructors (__init__ methods) are called. The MRO ensures that:
+#### Reason
+When super().__ init__() is used in the Child class, it follows the method resolution order (MRO) for the Child class. The MRO determines the order in which parent class constructors (__ init__ methods) are called. The MRO ensures that:
 
 Each class is called only once.
 The order respects the linearization of the hierarchy.
@@ -128,10 +128,10 @@ Child → Parent1 → Parent2 → object
 ```
  #### Step-by-Step Execution
  
-1.Child's __init__ is executed, which calls super().__init__().
-   super() looks at the next class in the MRO after Child, which is Parent1.
-2. Parent1's __init__ is executed.
-    Since Parent1 doesn't explicitly call super().__init__(), the chain stops here for the __init__ calls.
-3. Control returns to Child's __init__, and it prints "Child initialized".
+   1.Child's __init__ is executed, which calls super().__init__().
+      super() looks at the next class in the MRO after Child, which is Parent1.
+   2. Parent1's __init__ is executed.
+      Since Parent1 doesn't explicitly call super().__init__(), the chain stops here for the __init__ calls.
+   3. Control returns to Child's __init__, and it prints "Child initialized".
 
 
