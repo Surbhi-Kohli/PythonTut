@@ -1,8 +1,10 @@
 ## Association - Aggregation - Composition - Inheritance
-The choice between association, aggregation, composition, and inheritance depends on the relationship between the objects or classes and the context in which they are used. Below is a detailed guide to when to use each concept:
+The choice between association, aggregation, composition, and inheritance depends on the relationship between the objects or classes and the context in which they are used.
+Association is least strict relationship
+Below is a detailed guide to when to use each concept:
 
 
-### 1. Association
+### 1. Association(Coupling: Weakest coupling)
 Definition: A "uses-a" relationship where one class interacts with another. It does not imply ownership.
 
 When to use:
@@ -28,7 +30,7 @@ student = Student("Alice")
 course = Course("Math 101")
 
 ```
-### 2. Aggregation
+### 2. Aggregation (Coupling: Moderate coupling.)
 Definition: A "has-a" relationship where one class contains references to other objects, but the contained objects can exist independently of the container.
 
 When to use:
@@ -58,7 +60,7 @@ library = Library()
 library.add_book(book1)
 library.add_book(book2)
 ```
-### 3. Composition
+### 3. Composition (Coupling: Strong coupling.)
 Definition: A "owns-a" relationship where one class contains other objects and is responsible for their lifecycle. The contained objects cannot exist independently.
 
 When to use:
@@ -81,7 +83,7 @@ class Car:
 
 car = Car("Toyota", "Corolla", 130)
 ```
-### 4. Inheritance
+### 4. Inheritance (Most Strict)
 Definition: A "is-a" relationship where one class derives from another, inheriting its attributes and behaviors.
 
 When to use:
@@ -110,10 +112,10 @@ print(dog.make_sound())  # Output: Bark
 ### Summary of Use Cases
 Concept     |	Relationship Type |	Object Lifespan	| Use Case Examples |
 ----------- |  ------------------ | --------------- | ---------------   |
-Association |	"uses-a"          |	Independent     |Student ↔ Course, User ↔ Login |
+Association | "uses-a"            |	Independent     |   Student ↔ Course, User ↔ Login |
 Aggregation	| "has-a" (shared)    |	Independent     |	Library ↔ Book, Company ↔ Employee |
-Composition |"owns-a" (exclusive) |	Dependent       |	Car ↔ Engine, House ↔ Room |
-Inheritance |"is-a"               |	N/A	            |Dog ↔ Animal, Admin ↔ User|
+Composition | "owns-a"(exclusive) |	Dependent       |	Car ↔ Engine, House ↔ Room |
+Inheritance | "is-a"              |	N/A	            |   Dog ↔ Animal, Admin ↔ User|
 
 
 ### Key Considerations
