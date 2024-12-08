@@ -122,7 +122,7 @@ Use aggregation when one object logically contains others, but they can exist in
 Use composition when the container object owns the contained objects, and their lifecycles are tightly coupled.
 Use inheritance when you need to represent an "is-a" relationship and want to reuse code in a hierarchy.
 
-#### Side notes:
+### Side notes:
 The relationship between a car and an engine can vary depending on how you model their dependency in the system. The distinction lies between composition and aggregation:
 
 1. Engine Cannot Exist Without a Car
