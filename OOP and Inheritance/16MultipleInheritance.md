@@ -196,7 +196,7 @@ When d = D() is executed:
     C.__ init__ calls ```super().__ init__()```.
     super() in C looks at the MRO after C, which points to A.
     ```A.__ init__()``` is called.
- 7. A.__ init__ is executed.
+ 4. A.__ init__ is executed.
     Since A has no super().__ init__(), it stops here.
  5.The control returns back up the chain:
     C.__ init__ completes.
