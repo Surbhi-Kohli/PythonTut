@@ -121,17 +121,16 @@ When super().__ init__() is used in the Child class, it follows the method resol
 
 Each class is called only once.
 The order respects the linearization of the hierarchy.
-MRO for Child
 The MRO for Child is:
 ```
 Child → Parent1 → Parent2 → object
 ```
  #### Step-by-Step Execution
  
-   1.Child's __init__ is executed, which calls super().__init__().
-      super() looks at the next class in the MRO after Child, which is Parent1.
-   2. Parent1's __init__ is executed.
-      Since Parent1 doesn't explicitly call super().__init__(), the chain stops here for the __init__ calls.
-   3. Control returns to Child's __init__, and it prints "Child initialized".
+   1.Child's __init__ is executed, which calls super().__ init__(). 
+      super() looks at the next class in the MRO after Child, which is Parent1. 
+   2. Parent1's __ init__ is executed. 
+      Since Parent1 doesn't explicitly call super().__ init__(), the chain stops here for the __ init__ calls. 
+   3. Control returns to Child's __ init__, and it prints "Child initialized". 
 
 
