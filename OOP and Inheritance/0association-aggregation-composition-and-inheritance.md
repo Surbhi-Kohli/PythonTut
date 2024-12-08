@@ -121,3 +121,71 @@ Use association when two objects interact but do not own each other.
 Use aggregation when one object logically contains others, but they can exist independently.
 Use composition when the container object owns the contained objects, and their lifecycles are tightly coupled.
 Use inheritance when you need to represent an "is-a" relationship and want to reuse code in a hierarchy.
+
+#### Side notes:
+The relationship between a car and an engine can vary depending on how you model their dependency in the system. The distinction lies between composition and aggregation:
+
+1. Engine Cannot Exist Without a Car
+Relationship Type: Composition
+
+Explanation:
+
+If the engine is created as part of the car, and its lifecycle is tightly bound to the car's lifecycle (i.e., if the car is destroyed, the engine is destroyed too), then this is a composition relationship.
+ Example: A car class directly owns and manages its engine instance
+
+```
+class Engine:
+    def __init__(self, type):
+        self.type = type
+
+class Car:
+    def __init__(self, engine_type):
+        self.engine = Engine(engine_type)  # Engine is created within the Car
+    
+    def show_details(self):
+        print(f"Car with {self.engine.type} engine")
+    
+car = Car("V8")
+car.show_details()
+# Output: Car with V8 engine
+```
+In this case:
+
+The Engine is a part of the Car.
+The Engine has no independent existence.
+
+2. Car Cannot Exist Without an Engine
+Relationship Type: Aggregation
+
+Explanation:
+
+If the car requires an engine to function but the engine itself is not tightly coupled to the car (i.e., it can be replaced, shared, or reused), then the relationship is aggregation.
+Example: The engine is created independently and passed to the car.
+```
+class Engine:
+    def __init__(self, type):
+        self.type = type
+
+class Car:
+    def __init__(self, engine):
+        self.engine = engine  # Engine is passed to the Car
+    
+    def show_details(self):
+        print(f"Car with {self.engine.type} engine")
+    
+engine = Engine("V6")
+car = Car(engine)
+car.show_details()
+# Output: Car with V6 engine
+
+```
+In this case:
+
+The Engine exists independently of the Car.
+The Car requires an Engine to function, but the Engine can exist without the Car.
+Key Difference
+Aspect	| Composition |	Aggregation |
+------- | ----------- | ------------|
+Lifespan |	Engine depends on the Car. |	Engine exists independently.|
+Ownership |	Car owns the Engine.	|Car uses the Engine.|
+Dependency |	Strong dependency.	|Weak dependency.|
