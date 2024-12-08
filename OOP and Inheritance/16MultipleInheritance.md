@@ -160,6 +160,11 @@ class D(B, C):
         print("Initializing D")
 
 d = D()
+# Output:
+# Initializing A
+# Initializing C
+# Initializing B
+# Initializing D
 ```
 Class Hierarchy
 The hierarchy can be represented as:
