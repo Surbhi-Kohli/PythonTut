@@ -127,12 +127,97 @@ Child → Parent1 → Parent2 → object
 ```
  #### Step-by-Step Execution
  
-   1.Child's __init__ is executed, which calls super().__ init__(). 
+    1.Child's __init__ is executed, which calls super().__ init__(). 
       super() looks at the next class in the MRO after Child, which is Parent1. 
       
-   2. Parent1's __ init__ is executed. 
+    2. Parent1's __ init__ is executed. 
       Since Parent1 doesn't explicitly call super().__ init__(), the chain stops here for the __ init__ calls.
       
-   3. Control returns to Child's __ init__, and it prints "Child initialized". 
+    3. Control returns to Child's __ init__, and it prints "Child initialized". 
+
+### Example 2: Advanced Use of super() with Multiple Inheritance
+
+In this example, D inherits from both B and C, which themselves inherit from A. The super() function in each class's constructor ensures that the initializers of the parent classes are called in the proper order (A, B, C). This maintains consistency and avoids potential conflicts in method resolution.
+```
+
+class A:
+    def __init__(self):
+        print("Initializing A")
+
+class B(A):
+    def __init__(self):
+        super().__init__()
+        print("Initializing B")
+
+class C(A):
+    def __init__(self):
+        super().__init__()
+        print("Initializing C")
+
+class D(B, C):
+    def __init__(self):
+        super().__init__()
+        print("Initializing D")
+
+d = D()
+```
+Class Hierarchy
+The hierarchy can be represented as:
+```
+    A
+   / \
+  B   C
+   \ /
+    D
+```
+Class D inherits from B and C, both of which inherit from A.
+
+MRO for Class D
+In Python, the MRO is calculated using the C3 linearization algorithm. It ensures:
+
+A consistent order for resolving methods.
+Parent classes are initialized before child classes.
+Left-to-right ordering is respected when possible.
+For D, the MRO is:
+```
+D → B → C → A
+```
+What Happens During Initialization
+When d = D() is executed:
+
+ 1. D.__ init__ calls super().__ init__().
+    This looks at the next class in the MRO, which is B.
+    ```B.__ init__()``` is called
+ 2. B.__ init__ calls super().__ init__().
+    This looks at the next class in the MRO, which is C.
+    super() in B doesn't directly invoke ```A.__ init__()```. Instead, it looks at the MRO after B, which points to C.
+    ```C.__ init__()``` is called.
+ 3. When C.__ init__() is executed:
+    C.__ init__ calls ```super().__ init__()```.
+    super() in C looks at the MRO after C, which points to A.
+    ```A.__ init__()``` is called.
+ 7. A.__ init__ is executed.
+    Since A has no super().__ init__(), it stops here.
+ 5.The control returns back up the chain:
+    C.__ init__ completes.
+    B.__ init__ completes.
+    D.__ init__ completes.
 
 
+The key point is that super() follows the MRO. So, even though B appears before C in the inheritance hierarchy of D, the MRO ensures C is called before B.
+
+Step-by-Step Output
+Initializing A: First, A is initialized because it is the common ancestor.
+Initializing C: Then, C.__ init__ is executed.
+Initializing B: After C, B.__ init__ is executed.
+Initializing D: Finally, D.__ init__ completes the process.   
+#### In this code, will B's super.__init__ not be a call to A, since A is the parent class ??
+Yes, in this code, B's super().__ init__() will indeed call A.__ init__() because A is the parent class of B. However, the behavior of super() in Python considers the method resolution order (MRO). Let's analyze this step by step.
+
+#### Why Doesn't super().__ init__() in B Call A.__ init__() Directly?
+super() is not tied to the direct parent in the class hierarchy.
+Instead, it follows the MRO, which ensures that A.__ init__() is only called once in the entire hierarchy.
+
+Key Takeaways
+super() resolves the next method to call based on the MRO, not just the direct parent.
+This ensures that each class in the hierarchy is initialized only once, and the order is consistent with the MRO.
