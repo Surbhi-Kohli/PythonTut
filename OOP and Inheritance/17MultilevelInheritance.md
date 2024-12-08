@@ -49,14 +49,23 @@ In this example, we have three classes: Animal, Dog, and GoldenRetriever. The Do
 
 Now, when we create an object of the GoldenRetriever class, it has access to all the attributes and methods of the Animal class and the Dog class. We can also see that the GoldenRetriever class has its own attributes and methods that are specific to the class.
 ```
+o = Dog("tommy", "Black")
+o.show_details()
+print(GoldenRetriever.mro())
 dog = GoldenRetriever("Max", "Golden")
 dog.show_details()
 ```
 Output:
+```
+Name: tommy
+Species: Dog
+Breed: Black
+[<class '__main__.GoldenRetriever'>, <class '__main__.Dog'>, <class '__main__.Animal'>, <class 'object'>]
 Name: Max
 Species: Dog
 Breed: Golden Retriever
 Color: Golden
+```
 As we can see from the output, the GoldenRetriever object has access to all the attributes and methods of the Animal and Dog classes, and, it has also added its own unique attributes and methods. This is a powerful feature of multilevel inheritance, as it allows you to create more complex and intricate classes by building upon existing ones.
 
 Another important aspect of multilevel inheritance is that it allows you to reuse code and avoid repeating the same logic multiple times. This can lead to better maintainability and readability of your code, as you can abstract away complex logic into base classes and build upon them.
