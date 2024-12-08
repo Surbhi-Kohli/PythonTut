@@ -108,12 +108,12 @@ dog = Dog("Buddy")
 print(dog.make_sound())  # Output: Bark
 ```
 ### Summary of Use Cases
-Concept |	Relationship Type |	Object Lifespan	| Use Case Examples
-------  |  ------------     |      ---------- |
-Association |	"uses-a" |	Independent |	Student ↔ Course, User ↔ Login
-Aggregation	| "has-a" (shared)|	Independent|	Library ↔ Book, Company ↔ Employee
-Composition |	"owns-a" (exclusive) |	Dependent |	Car ↔ Engine, House ↔ Room
-Inheritance |"is-a" |	N/A	 |Dog ↔ Animal, Admin ↔ User
+Concept     |	Relationship Type |	Object Lifespan	| Use Case Examples |
+----------- |  ------------------ | --------------- | ---------------   |
+Association |	"uses-a"          |	Independent     |Student ↔ Course, User ↔ Login |
+Aggregation	| "has-a" (shared)    |	Independent     |	Library ↔ Book, Company ↔ Employee |
+Composition |"owns-a" (exclusive) |	Dependent       |	Car ↔ Engine, House ↔ Room |
+Inheritance |"is-a"               |	N/A	            |Dog ↔ Animal, Admin ↔ User|
 
 
 ### Key Considerations
