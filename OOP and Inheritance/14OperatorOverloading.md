@@ -121,7 +121,7 @@ For example:
 class Vector:
     ...
 ```
-If this class were in a module named geometry, the fully qualified name would be geometry.Vector.
+If this class were in a module named ```geometry```, the fully qualified name would be ```geometry.Vector```.
 Since you're running the script directly, the module is the special _ _ main_ _ module.
 
 3. When It Would Say Vector:
@@ -132,4 +132,4 @@ from geometry import Vector
 print(type(Vector(1, 2, 3)))  # <class 'geometry.Vector'>
 ```
  #### Key Takeaway:
-The output __main__.Vector indicates that the Vector class was defined in the module being executed directly, which Python refers to as __main__. This is expected behavior when running code in a script or an interactive environment like Python's REPL.
+The output _ _ main__.Vector indicates that the Vector class was defined in the module being executed directly, which Python refers to as __main__. This is expected behavior when running code in a script or an interactive environment like Python's REPL.
