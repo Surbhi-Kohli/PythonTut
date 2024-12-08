@@ -129,8 +129,10 @@ Child → Parent1 → Parent2 → object
  
    1.Child's __init__ is executed, which calls super().__ init__(). 
       super() looks at the next class in the MRO after Child, which is Parent1. 
+      
    2. Parent1's __ init__ is executed. 
-      Since Parent1 doesn't explicitly call super().__ init__(), the chain stops here for the __ init__ calls. 
+      Since Parent1 doesn't explicitly call super().__ init__(), the chain stops here for the __ init__ calls.
+      
    3. Control returns to Child's __ init__, and it prints "Child initialized". 
 
 
