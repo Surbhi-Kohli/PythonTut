@@ -107,12 +107,13 @@ print(type(v1 + v2)) # <class '__main__.Vector'>
 ### Some extra observation from the above code:
 The reason you see <class '__main__.Vector'> instead of <class 'Vector'> is because of how Python namespaces work when you run your code.
 
-__main__ as the Top-Level Script Environment:
+1. _ _ main_ _ as the Top-Level Script Environment:
 
 When you run a script directly, the __name__ variable for that script is set to "__main__".
 This means the top-level module where your class Vector is defined is referred to as __main__ during the script's execution.
 The full name of the Vector class therefore becomes __main__.Vector because it belongs to the __main__ namespace.
-Namespace Prefix:
+
+2.Namespace Prefix:
 
 In Python, the fully qualified name of a class includes the module it was defined in.
 For example:
@@ -122,7 +123,8 @@ class Vector:
 ```
 If this class were in a module named geometry, the fully qualified name would be geometry.Vector.
 Since you're running the script directly, the module is the special _ _ main_ _ module.
-When It Would Say Vector:
+
+3. When It Would Say Vector:
 
 If you had defined the Vector class in a separate module (e.g., geometry.py) and imported it, the output would reflect the module name:
 ```
