@@ -210,7 +210,8 @@ Step-by-Step Output
 Initializing A: First, A is initialized because it is the common ancestor.
 Initializing C: Then, C.__ init__ is executed.
 Initializing B: After C, B.__ init__ is executed.
-Initializing D: Finally, D.__ init__ completes the process.   
+Initializing D: Finally, D.__ init__ completes the process.
+
 #### In this code, will B's super.__init__ not be a call to A, since A is the parent class ??
 Yes, in this code, B's super().__ init__() will indeed call A.__ init__() because A is the parent class of B. However, the behavior of super() in Python considers the method resolution order (MRO). Let's analyze this step by step.
 
@@ -218,6 +219,6 @@ Yes, in this code, B's super().__ init__() will indeed call A.__ init__() becaus
 super() is not tied to the direct parent in the class hierarchy.
 Instead, it follows the MRO, which ensures that A.__ init__() is only called once in the entire hierarchy.
 
-Key Takeaways
+### Key Takeaways
 super() resolves the next method to call based on the MRO, not just the direct parent.
 This ensures that each class in the hierarchy is initialized only once, and the order is consistent with the MRO.
