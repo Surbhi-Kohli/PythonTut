@@ -183,7 +183,8 @@ In this case:
 
 The Engine exists independently of the Car.
 The Car requires an Engine to function, but the Engine can exist without the Car.
-Key Difference
+
+##### Key Difference
 Aspect	| Composition |	Aggregation |
 ------- | ----------- | ------------|
 Lifespan |	Engine depends on the Car. |	Engine exists independently.|
