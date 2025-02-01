@@ -98,3 +98,12 @@ You want to conserve memory and have simpler inter-task communication.
 #### Summary
 Multiprocessing is better for CPU-bound tasks and achieves true parallelism by utilizing multiple cores.
 Multithreading is better for I/O-bound tasks and allows concurrency within the same process, though it does not provide true parallelism due to the GIL in Python.
+
+### JavaScript: Event Loop and Asynchronous Programming
+In JavaScript, the concurrency model is different from both Python and Java. JavaScript runs in a single-threaded event loop, which is primarily designed for handling I/O-bound tasks efficiently (e.g., web requests, file I/O, timers).
+
+##### Multithreading in JavaScript: 
+JavaScript does not use traditional multithreading for concurrency. Instead, it relies on asynchronous programming (e.g., async/await, Promises) and the event loop to handle non-blocking tasks. JavaScript does not achieve parallelism in the same way as Python or Java.
+##### Multiprocessing in JavaScript: 
+JavaScript can use Web Workers (in the browser) or Worker Threads (in Node.js) to achieve parallelism and utilize multiple cores. These worker threads can perform computations in parallel and communicate with the main thread via message passing.
+In JavaScript, traditional multithreading (where threads share the same memory space) is not the standard approach; instead, concurrency is achieved through asynchronous tasks and worker threads.
