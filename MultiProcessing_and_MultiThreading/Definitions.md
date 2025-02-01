@@ -57,22 +57,22 @@ Multithreading involves running multiple threads within the same process. All th
   * Global Interpreter Lock (GIL) for python: For CPU-bound tasks, the GIL prevents true parallelism, as only one thread can execute Python bytecode at a time in a process.
   * Potential issues with thread synchronization (race conditions, deadlocks).
 
-    ```
-    import threading
-
-    def print_numbers():
-        for i in range(5):
-            print(i)
+        ```
+        import threading
     
-    thread1 = threading.Thread(target=print_numbers)
-    thread2 = threading.Thread(target=print_numbers)
-    
-    thread1.start()
-    thread2.start()
-    
-    thread1.join()
-    thread2.join()
-   ```
+        def print_numbers():
+            for i in range(5):
+                print(i)
+        
+        thread1 = threading.Thread(target=print_numbers)
+        thread2 = threading.Thread(target=print_numbers)
+        
+        thread1.start()
+        thread2.start()
+        
+        thread1.join()
+        thread2.join()
+       ```
 
 #### Key Differences
 |Feature	|Multiprocessing	|Multithreading|
