@@ -85,3 +85,16 @@ Multithreading involves running multiple threads within the same process. All th
 |Overhead |	Higher (multiple processes with separate memory)	|Lower (threads are lighter than processes)|
 |Performance|	Can achieve higher performance for CPU-bound tasks |	Can be slower for CPU-bound tasks due to the GIL|
 
+
+#### Choosing Between Multiprocessing and Multithreading
+Use Multiprocessing when:
+You have CPU-bound tasks that need to run in parallel (e.g., number crunching, image processing, data analysis).
+You need to utilize multiple CPU cores fully.
+
+Use Multithreading when:
+You have I/O-bound tasks (e.g., making API requests, file I/O, or network communication).
+You want to conserve memory and have simpler inter-task communication.
+
+#### Summary
+Multiprocessing is better for CPU-bound tasks and achieves true parallelism by utilizing multiple cores.
+Multithreading is better for I/O-bound tasks and allows concurrency within the same process, though it does not provide true parallelism due to the GIL in Python.
