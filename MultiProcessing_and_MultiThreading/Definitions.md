@@ -72,5 +72,4 @@ Multithreading involves running multiple threads within the same process. All th
     
     thread1.join()
     thread2.join()
-
-```
+   ```
