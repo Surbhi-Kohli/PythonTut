@@ -73,3 +73,15 @@ Multithreading involves running multiple threads within the same process. All th
     thread1.join()
     thread2.join()
    ```
+
+#### Key Differences
+|Feature	|Multiprocessing	|Multithreading|
+|-----------|------------------|--------------|
+|Execution|	Multiple processes running independently	|Multiple threads running in the same process|
+|Memory |	Separate memory space for each process	|Shared memory space among all threads|
+|Ideal for	|CPU-bound tasks (heavy computation) 	|I/O-bound tasks (waiting on files, network, etc.)|
+|True Parallelism|	Achieved (separate CPU cores for each process)	|Not achieved (due to the GIL)|
+|Communication	|More complex, requires inter-process communication (IPC)	|Easier, shared memory, but requires thread synchronization|
+|Overhead |	Higher (multiple processes with separate memory)	|Lower (threads are lighter than processes)|
+|Performance|	Can achieve higher performance for CPU-bound tasks |	Can be slower for CPU-bound tasks due to the GIL|
+
