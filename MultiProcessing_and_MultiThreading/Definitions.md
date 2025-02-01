@@ -2,7 +2,8 @@
 Both multiprocessing and multithreading are techniques used to achieve concurrent execution in Python, but they differ significantly in how they manage tasks and how they utilize system resources.
 
 ### 1. Multiprocessing
-#### Definition: Multiprocessing involves running multiple processes in parallel. Each process has its own memory space and Python interpreter. The operating system handles processes independently.
+#### Definition:
+Multiprocessing involves running multiple processes in parallel. Each process has its own memory space and Python interpreter. The operating system handles processes independently.
 
 #### Key Characteristics:
 
@@ -35,7 +36,8 @@ print(results)  # [1, 4, 9, 16]
 ```
 ### 2. Multithreading
 
-#### Definition: Multithreading involves running multiple threads within the same process. All threads share the same memory space, which makes communication between threads easier.
+#### Definition: 
+Multithreading involves running multiple threads within the same process. All threads **share the same memory space**, which makes communication between threads easier.
 
 #### Key Characteristics:
 
@@ -43,3 +45,14 @@ print(results)  # [1, 4, 9, 16]
   * Shared Memory: All threads within a process share the same memory space, so they can access and modify the same data. However, you must manage concurrent access (via locks, semaphores, etc.) to avoid race conditions.
   * I/O-bound tasks: Multithreading is ideal for I/O-bound tasks (e.g., web requests, reading/writing files, etc.). Threads can wait on I/O operations without blocking other threads, allowing the CPU to continue performing other tasks.
   * Concurrency (not true parallelism): Because of Python’s Global Interpreter Lock (GIL), multithreading in Python does not achieve true parallelism for CPU-bound tasks. The GIL prevents multiple threads from executing Python bytecodes simultaneously on multiple CPU cores, even on multi-core systems.
+
+ #### Advantages:
+
+  * Lower memory overhead since all threads share the same memory space.
+  * Easier communication between threads (since they share memory).
+  * Ideal for I/O-bound tasks where the program spends time waiting on external resources.
+
+#### Disadvantages:
+
+  * Global Interpreter Lock (GIL) for python: For CPU-bound tasks, the GIL prevents true parallelism, as only one thread can execute Python bytecode at a time in a process.
+  * Potential issues with thread synchronization (race conditions, deadlocks).   
