@@ -1,5 +1,6 @@
 
-The difference between a Python dict and a JSON object is subtle but important—mainly in terms of usage context, syntax rules, and data types.
+The difference between a Python dict and a JSON object is subtle but important—mainly in terms of usage context, syntax rules, and data types.  
+
 🔹 1. Python dict
      * Native Python data structure.
      * Supports any immutable type as keys (not just strings).
@@ -18,6 +19,8 @@ Example:
     }
 
 ```
+
+
 
 🔹 2. JSON Object
 A string-based data format (used for data exchange, especially with web APIs).
