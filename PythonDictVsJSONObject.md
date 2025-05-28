@@ -12,12 +12,12 @@ Example:
 
  ```
 
-    data = {
-        "name": "Alice",
-        "age": 25,
-        "is_admin": True,
-        "skills": ["Python", "SQL"]
-    }
+data = {
+"name": "Alice",
+"age": 25,
+"is_admin": True,
+"skills": ["Python", "SQL"]
+}
 
 ```
 
@@ -29,15 +29,15 @@ A string-based data format (used for data exchange, especially with web APIs).
        * Keys must be strings (double-quoted).
        * Values must be one of: String, Number, Boolean, Array (→ list in Python), Object (→ dict in Python),null (→ None in Python)
 
-     Example:
-     ```
-         {
-      "name": "Alice",
-      "age": 25,
-      "is_admin": true,
-      "skills": ["Python", "SQL"]
-      }
-    ```
+Example:
+```
+ {
+"name": "Alice",
+"age": 25,
+"is_admin": true,
+"skills": ["Python", "SQL"]
+}
+```
 
     🔄 Converting Between Them
      Python dict ⬌ JSON object using the json module:
