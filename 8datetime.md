@@ -13,10 +13,10 @@ Key points about UTC:
 2. Not a timezone per se
   * It doesn’t change with daylight saving.
   * It’s always consistent: UTC+0.
-3.Used for coordination
+3. Used for coordination
   *Internet servers, flight schedules, banking transactions, programming logs all use UTC to avoid confusion.
   * Example: A server in Singapore (UTC+8) and a server in New York (UTC-5) can both log an event as 2026-01-21 08:00 UTC → easy to compare.
- 4.Relation to local time
+4. Relation to local time
    * Local time = UTC +(-) offset
    * Singapore: UTC+8 → if UTC is 10:00, local time is 18:00
    * New York: UTC-5 → if UTC is 10:00, local time is 05:00  
