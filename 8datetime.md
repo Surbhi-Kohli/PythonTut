@@ -180,3 +180,70 @@ This is aware and safe.
 | `now(timezone.utc)` | UTC        | ✅ Aware |
 
 For timezone aware work we will use pytz instead of datetimes original timezone as pytz is easier to use and also recommended in python docs.
+But Why??
+#### 1️⃣ The problem with Python’s built-in timezones
+
+Python’s standard library (datetime.timezone) can only represent fixed offsets like:
+```
+from datetime import timezone, timedelta
+UTC_plus_5 = timezone(timedelta(hours=5))
+```
+
+✅ Works for simple offsets
+
+❌ Cannot handle daylight saving time (DST) or historical changes
+For example, Mountain Time in the US:
+Winter: UTC-7
+Summer: UTC-6 (DST)
+
+If you try to use datetime.timezone, you have to manually adjust offsets for DST—painful and error-prone.
+#### 2️⃣ Why pytz is better
+
+pytz comes with the full IANA timezone database (the same one used by your OS and Linux servers).
+
+This means:
+It knows about DST rules automatically
+It knows historical changes, like if a country changed its timezone in the past
+
+You can just do:
+```
+import pytz
+from datetime import datetime
+
+dt_utc = datetime.now(pytz.UTC)
+dt_mtn = dt_utc.astimezone(pytz.timezone("US/Mountain"))
+print(dt_mtn)
+# Automatically adjusts for DST
+
+```
+✅ No manual math for offsets
+✅ Safe for real-world applications
+
+#### 3️⃣ Python docs recommendation
+
+Python docs themselves say:
+
+“For accurate and cross-platform timezone calculations, use pytz or zoneinfo. Avoid using fixed-offset timezone objects for real-world timezones.”
+pytz → historically recommended
+Python 3.9+ → now also has zoneinfo in the standard library (similar functionality)
+
+#### 4️⃣ Easy way to remember
+
+Built-in timezone: good for simple fixed offsets only (UTC+5)
+
+pytz: good for real-world zones with DST
+
+Always use pytz (or zoneinfo) for apps, like logging, calendars, servers
+
+The ONE thing to remember
+
+Real places have moving clocks.
+Python’s basic timezone has a fixed clock.
+pytz knows when clocks move.
+
+
+Golden rule (tattoo-worthy 😄)
+
+Store in UTC.
+Convert with pytz.
+Never trust fixed offsets.
