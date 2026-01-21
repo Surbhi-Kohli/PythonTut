@@ -1,6 +1,31 @@
 # How to work with dates, times , timedeltas and Timezones:
 Important module for all these tasks is datetime module.
 
+## What is UTC
+UTC stands for Coordinated Universal Time. 🌎🕒
+
+It’s the world standard time that all other timezones are based on. Think of it as the “baseline” clock for the planet.
+
+Key points about UTC:
+1. Universal reference
+  * UTC is the same everywhere.
+  * When it’s 12:00 UTC, it’s 12:00 everywhere in UTC, but local clocks show different times depending on the timezone.
+2. Not a timezone per se
+  * It doesn’t change with daylight saving.
+  * It’s always consistent: UTC+0.
+3.Used for coordination
+  *Internet servers, flight schedules, banking transactions, programming logs all use UTC to avoid confusion.
+  * Example: A server in Singapore (UTC+8) and a server in New York (UTC-5) can both log an event as 2026-01-21 08:00 UTC → easy to compare.
+ 4.Relation to local time
+   * Local time = UTC +(-) offset
+   * Singapore: UTC+8 → if UTC is 10:00, local time is 18:00
+   * New York: UTC-5 → if UTC is 10:00, local time is 05:00  
+
+Quick analogy:
+
+Think of UTC as Greenwich Mean Time (GMT)—the “mother clock” of the world.
+Local timezones are just UTC plus/minus a few hours.
+
 ### There are 2 types of times: Naive and Aware times
 Naive datetime: Dont have enough info to determine timezone, daylight saving time, etc.But these are easier to work with and better in case you would not need timezone etc info.
 
@@ -72,7 +97,7 @@ print(dt.date()) # 2016-07-26
 print(dt.time()) # 12:30:45.010000
 print(dt.year) # 2016
 ```
-Timedelta with datetime:
+##### Timedelta with datetime:
 
 ```
 tdelta= datetime.timedelta(days=7)
@@ -83,3 +108,75 @@ print(dt+tdelta) # 2016-08-02 12:30:45.010000
 hdelta = datetime.timedelta(hours=12)
 print(dt+hdelta) #2016-07-27 00:30:45.010000
 ```
+#### datetime.now() vs datetime.utcnow()
+
+
+datetime.now() and datetime.utcnow() return different clock times
+Both return “naive” datetimes → tzinfo is None
+“UTC” here means the value, not that it’s timezone-aware
+
+1️⃣ datetime.datetime.now()
+dt_now = datetime.datetime.now()
+* Returns current local time (based on your system clock)
+* Timezone is assumed, not attached
+* Result is naive
+
+Example (if your system is in Singapore):
+```
+2026-01-21 14:30:00
+tzinfo = None
+
+```
+Python does not store “Asia/Singapore” anywhere here.
+2️⃣ datetime.datetime.utcnow()
+dt_utcnow = datetime.datetime.utcnow()
+
+* Returns current UTC time
+* BUT still returns a naive datetime
+* tzinfo is None
+
+```
+ import datetime
+ dt_today= datetime.datetime.today()
+
+ dt_now= datetime.datetime.now() # lets u pass a timezone, here we did not pass 
+ dt_utcnow= datetime.datetime.utcnow() # this gives us current utc time but  here also tzinfo is None
+# <stdin>:1: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+ print(dt_today) # 2026-01-21 20:53:58.924482 - gives current local datetime with timezone of none
+ print(dt_now) # 2026-01-21 20:53:52.314170
+ print(dt_utcnow) # 2026-01-21 15:24:50.128305
+
+```
+Why does utcnow() still have tzinfo=None?
+
+Because of historical Python design.
+
+Originally:
+Python treated timezones as external knowledge.Functions returned raw timestamps, not metadata
+
+So:utcnow() means “this value represents UTC”,not “this object is timezone-aware”.
+
+This is why Python docs now say:
+
+❗ datetime.utcnow() is deprecated for new code
+The correct way (modern Python)
+✅ Use timezone-aware datetimes
+```
+from datetime import datetime, timezone
+
+dt_utc = datetime.now(timezone.utc)
+```
+
+Now:
+
+2026-01-21 06:30:00+00:00
+tzinfo = UTC
+This is aware and safe.
+### Mental Model:
+| Function            | Time value | tzinfo  |
+| ------------------- | ---------- | ------- |
+| `now()`             | Local      | ❌ None  |
+| `utcnow()`          | UTC        | ❌ None  |
+| `now(timezone.utc)` | UTC        | ✅ Aware |
+
+For timezone aware work we will use pytz instead of datetimes original timezone as pytz is easier to use and also recommended in python docs.
