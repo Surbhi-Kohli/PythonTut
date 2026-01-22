@@ -116,7 +116,8 @@ Both return “naive” datetimes → tzinfo is None
 “UTC” here means the value, not that it’s timezone-aware
 
 1️⃣ datetime.datetime.now()
-dt_now = datetime.datetime.now()
+
+```dt_now = datetime.datetime.now()```
 * Returns current local time (based on your system clock)
 * Timezone is assumed, not attached
 * Result is naive
@@ -131,13 +132,13 @@ Python does not store “Asia/Singapore” anywhere here.
 2️⃣ datetime.datetime.utcnow()
 dt_utcnow = datetime.datetime.utcnow()
 
-* Returns current UTC time
+* Returns current UTC time(which does not specify the timezone that it is UTC)
 * BUT still returns a naive datetime
 * tzinfo is None
 
 ```
  import datetime
- dt_today= datetime.datetime.today()
+ dt_today = datetime.datetime.today()
 
  dt_now= datetime.datetime.now() # lets u pass a timezone, here we did not pass 
  dt_utcnow= datetime.datetime.utcnow() # this gives us current utc time but  here also tzinfo is None
@@ -229,9 +230,8 @@ Python 3.9+ → now also has zoneinfo in the standard library (similar functiona
 
 #### 4️⃣ Easy way to remember
 
-Built-in timezone: good for simple fixed offsets only (UTC+5)
-
-pytz: good for real-world zones with DST
+* Built-in timezone of python : good for simple fixed offsets only (UTC+5)
+* pytz: good for real-world zones with DST
 
 Always use pytz (or zoneinfo) for apps, like logging, calendars, servers
 
@@ -244,6 +244,6 @@ pytz knows when clocks move.
 
 Golden rule (tattoo-worthy 😄)
 
-Store in UTC.
+Store time in UTC.
 Convert with pytz.
 Never trust fixed offsets.
