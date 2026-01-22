@@ -247,3 +247,29 @@ Golden rule (tattoo-worthy 😄)
 Store time in UTC.
 Convert with pytz.
 Never trust fixed offsets.
+
+### Timezone aware datetimes
+```
+import datetime
+import pytz
+dt = datetime.datetime(2016,7,27,12,30,45,tzinfo=pytz.UTC)
+print(dt) # 2016-07-27 12:30:45+00:00
+dt_now_utc = datetime.datetime.now(tz=pytz.UTC)
+print(dt_now_utc) # 2026-01-22 12:01:51.338943+00:00
+dt_utcnow = datetime.datetime.utcnow().replace(tzinfo=pytz.UTC)
+# <stdin>:1: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to # #represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+# print(dt_utcnow) 2026-01-22 12:02:51.941243+00:00
+```
+### Convert utc time to different timezone
+
+```
+import datetime
+import pytz
+dt = datetime.datetime(2016,7,27,12,30,45,tzinfo=pytz.UTC)
+print(dt) # 2016-07-27 12:30:45+00:00
+dt_now_utc = datetime.datetime.now(tz=pytz.UTC)
+print(dt_now_utc) # 2026-01-22 12:01:51.338943+00:00
+dt_utcnow = datetime.datetime.utcnow().replace(tzinfo=pytz.UTC)
+# <stdin>:1: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to # #represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+# print(dt_utcnow) 2026-01-22 12:02:51.941243+00:00
+```
