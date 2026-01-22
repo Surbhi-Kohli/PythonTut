@@ -272,4 +272,20 @@ print(dt_now_utc) # 2026-01-22 12:01:51.338943+00:00
 dt_utcnow = datetime.datetime.utcnow().replace(tzinfo=pytz.UTC)
 # <stdin>:1: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to # #represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
 # print(dt_utcnow) 2026-01-22 12:02:51.941243+00:00
+dt_mtn = dt_now_utc.astimezone(pytz.timezone('US/Mountain'))
+print(dt_mtn) # 2026-01-22 05:01:51.338943-07:00
+dt_india = dt_now_utc.astimezone(pytz.timezone('Asia/Kolkata'))
+print(dt_india) # 2026-01-22 17:31:51.338943+05:30
+```
+### how to know the different timezone values:
+
+```
+for tz in pytz.all_timezones:
+...     print(tz) # This prints a list of all available timezones
+```
+### How to make a naive datetime , timezone aware 
+
+```
+new_datetime = datetime.datetime.now()
+print(new_datetime) #2026-01-22 18:40:00.396742
 ```
