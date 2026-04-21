@@ -1,14 +1,14 @@
 
-Virtual env is a way in which u can separate different python environments for different projects.
+Virtual env is a way in which u can separate different python environments for different projects.  
 Why would u want to do something like this? eg say u have multiple projects that all rely on single package like flask or django. Each of these projects might be using different version of django or flask.
 If u go and upgrade the version in ur global packages, it might break a couple of projects.It would be better if each of the projects had isolated environments where they had dependencies and packages that they need and the specific versions thats they needed.And thats what virtual env allows us to do .It allows us to make those different python environments.
 
 ## Why Do We Need virtualenv in Python
-Isolated Environment: A virtualenv (short for "virtual environment") creates an isolated environment for Python projects. This means that each project can have its own dependencies (libraries, modules, etc.), independent of other projects and the system-wide Python installation. This isolation helps avoid conflicts between packages and their versions when multiple projects are being developed simultaneously.
+* Isolated Environment: A virtualenv (short for "virtual environment") creates an isolated environment for Python projects. This means that each project can have its own dependencies (libraries, modules, etc.), independent of other projects and the system-wide Python installation. This isolation helps avoid conflicts between packages and their versions when multiple projects are being developed simultaneously.
 
-Version Control: Different projects may require different versions of the same package. For example, one project may need Django 3.2 while another may require Django 4.0. By using virtual environments, you can manage different package versions for different projects without conflict.
+* Version Control: Different projects may require different versions of the same package. For example, one project may need Django 3.2 while another may require Django 4.0. By using virtual environments, you can manage different package versions for different projects without conflict.
 
-Avoiding Permission Issues: Installing packages globally (at the system level) may require administrative or root permissions. Virtual environments allow you to install packages locally for a specific project without needing special permissions.
+* Avoiding Permission Issues: Installing packages globally (at the system level) may require administrative or root permissions. Virtual environments allow you to install packages locally for a specific project without needing special permissions.
 
 Install the virtual env package like so:
 ```pip install virtualenv```
