@@ -22,11 +22,25 @@ Install the virtual env package like so:
    virtualenv project1_env # first environment
 ```
 2.to activate the environment , 
+
 ```
 source project1_env/bin/activate
 
 which python  ->/Users/surbhikohli/Environments/project1_env/bin/python The path is within our virtual environment project1_env
 ```
+What does activation mean: "Activating" a virtual environment just means reconfiguring your current shell session to use the venv's Python and packages instead of the system ones. That's all it is.
+activation is just a convenience so you don't have to type full paths like:
+```
+bash
+# Without activation — works, but tedious
+/Users/surbhikohli/MyPersonal/fastapi/venv/bin/python app/main.py
+/Users/surbhikohli/MyPersonal/fastapi/venv/bin/pip install fastapi
+ 
+# With activation — same thing, just shorter
+python app/main.py
+pip install fastapi
+```
+And deactivate (line 4–32 of the same file) just undoes all of this — restores the old PATH, old prompt, and removes VIRTUAL_ENV.
 Now ur prompt will have **name of ur virtual env**: 
 
 <img width="617" alt="Screenshot 2024-08-31 at 9 03 36 PM" src="https://github.com/user-attachments/assets/cdc49fb2-4e29-488d-911c-1ff603048295">  
