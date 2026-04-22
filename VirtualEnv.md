@@ -70,19 +70,6 @@ After activation your prompt changes to **show the env name**, and `python`/`pip
 which python
 # /Users/surbhikohli/Environments/project1_env/bin/python  (inside venv, not system)
 ```
-What does activation mean: "Activating" a virtual environment just means reconfiguring your current shell session to use the venv's Python and packages instead of the system ones. That's all it is.
-activation is just a convenience so you don't have to type full paths like:
-```
-bash
-# Without activation — works, but tedious
-/Users/surbhikohli/MyPersonal/fastapi/venv/bin/python app/main.py
-/Users/surbhikohli/MyPersonal/fastapi/venv/bin/pip install fastapi
- 
-# With activation — same thing, just shorter
-python app/main.py
-pip install fastapi
-```
-And deactivate (line 4–32 of the same file) just undoes all of this — restores the old PATH, old prompt, and removes VIRTUAL_ENV.
 
 ### Step 3: Install packages
 
@@ -95,8 +82,6 @@ pip install -r requirements.txt        # install from a saved requirements file
 
 > **zsh note:** Square brackets `[]` are glob patterns in zsh. Always quote them: `"fastapi[all]"` not `fastapi[all]`.
 
-
- 
 
 When u run ```pip list``` u see packages only within ur environment: 
 <img width="696" alt="Screenshot 2024-08-31 at 9 05 26 PM" src="https://github.com/user-attachments/assets/d4ff9a53-4d37-4edc-8a03-700e697d892e">  
@@ -161,11 +146,102 @@ deactivate                                 # 5. Done for the day
 ```
 
 ---
+# Part 2: Deeper Knowledge
+
+## 4. What Activation Actually Does Under the Hood
+
+Activation is **not** starting a process or booting anything."Activating" a virtual environment just means reconfiguring your current shell session to use the venv's Python and packages instead of the system ones. It reconfigures your current shell session by doing three things:
+
+1. **Changes `PATH`** — Prepends `venv/bin/` so `python` and `pip` resolve to the venv's copies first
+2. **Sets `VIRTUAL_ENV` variable** — Points to the venv directory; tools use this to detect the active venv
+3. **Updates your prompt** — Adds `(venv)` as a visual indicator
+
+It is purely a convenience so you don't have to type full paths:
+
+```bash
+# Without activation — works, but tedious
+/Users/surbhikohli/MyPersonal/fastapi/venv/bin/python app/main.py
+/Users/surbhikohli/MyPersonal/fastapi/venv/bin/pip install fastapi
+
+# With activation — same thing, just shorter
+python app/main.py
+pip install fastapi
+```
+And deactivate  just undoes all of this — restores the old PATH, old prompt, and removes VIRTUAL_ENV.
+### Why `source` specifically?
+
+`source` is a **shell built-in** that runs a script **in your current shell session**. Without it, the script runs in a child process and all environment changes (PATH, etc.) vanish when that subprocess exits.
+
+```bash
+source venv/bin/activate   # changes stick in your current terminal
+sh venv/bin/activate       # changes happen in a subprocess and vanish
+```
+
+### About the `bin/activate` file
+
+- Located at `venv/bin/activate` — no file extension, which is common for Unix scripts meant to be sourced
+- Variants exist for other shells: `activate.csh`, `activate.fish`, `Activate.ps1`
+- On Unix, file extensions are optional — the OS doesn't use them to determine how to run a file
+
+---
+
+## 5. What's Inside the Environment Folder
+
+### Symlink vs Copy
+
+| Component              | Symlink or Copy?   | Why                                        |
+|------------------------|--------------------|--------------------------------------------|
+| **Python binary**      | Symlink (shortcut) | Same interpreter, no need to duplicate     |
+| **Installed packages** | Separate copies    | Isolation — the whole point of a venv      |
+
+A **symlink** is a shortcut pointing to the original file. A **copy** is a fully independent duplicate.
+
+```bash
+ls -la venv/bin/python3
+# Output with -> means it's a symlink:
+# venv/bin/python3 -> ~/.pyenv/versions/3.12.4/bin/python3
+```
+
+Packages are always independent copies per environment, even if the same package exists globally. Different venvs can have different versions of the same package.
+
+---
+
+## 6. `source` vs `sh` 
+
+| Command    | What it is             | Purpose                                          |
+|------------|------------------------|--------------------------------------------------|
+| `source`   | Shell built-in         | Runs a script in your **current** shell session  |
+| `sh`       | Bourne Shell           | A shell interpreter / runs scripts in a **subprocess** |
+
+### Shell family tree
+
+| Shell   | Full Name          | Notes                                  |
+|---------|--------------------|----------------------------------------|
+| `sh`    | Bourne Shell       | Original Unix shell (1979), minimal    |
+| `bash`  | Bourne Again Shell | Upgraded `sh`, default on most Linux   |
+| `zsh`   | Z Shell            | Further upgraded, **default on macOS** |
+
+---
+
+## 7. Glob Patterns
+
+A glob pattern is wildcard syntax for matching file/directory names. Relevant because pip extras use `[]` syntax and `.gitignore` uses globs.
+
+| Pattern   | Matches                          | Example                         |
+|-----------|----------------------------------|---------------------------------|
+| `*`       | Any characters (one level)       | `*.py` matches `main.py`       |
+| `?`       | Exactly one character            | `file?.txt` matches `file1.txt`|
+| `**`      | Any number of directories        | `**/*.py` matches all `.py` files recursively |
+| `[abc]`   | One character in the set         | `file[12].txt` matches `file1.txt` |
+| `[!abc]`  | One character NOT in the set     | `file[!1].txt` matches `file2.txt` |
+
+Used in: shell commands, `.gitignore`, Python's `glob` module.
+
+---
 
 
 
-#### Why We Need to Restart with the source Command:   
-When you create a virtual environment, you need to "activate" it to use it. The source command is used to run the activation script.
+
 
 #### What Happens When You Run source?
 Modifies Environment Variables: Running the source command modifies the shell's environment variables, particularly the PATH variable, to prioritize the Python interpreter and libraries of the virtual environment over the system-wide ones. This ensures that when you run python or pip, it uses the versions from the virtual environment.
@@ -184,38 +260,6 @@ activate: This is the script that is used to activate the virtual environment. R
 
 
 
-## To get out of ur virtual env
-```deactivate```
 
-To delete
-``` rm -rm project1_env```
 
-```vitualenv -p /usr/bin/python2.6(python version) <projectname>```
-The environments that we have here are only meant for ur dependencies and packages and not for the actual project files . You should not build ur project files within the virtual env
 
-## Newer version:
-what is python -m venv ./venv    doing
-
-```python -m venv ./venv```
- creates a Python virtual environment in a folder called venv in the current directory.
-
-Breaking it down:
-
-* python — invokes the Python interpreter
-* -m venv — runs the built-in venv module as a script (-m means "run this module")
-* ./venv — the target directory where the virtual environment will be created
-
-#### What it actually creates
-A ./venv folder containing:
-
-  * Its own Python binary (a copy/symlink of the system Python)
-  * Its own pip
-  * An isolated site-packages directory for installing packages without affecting the global Python installation
-
-Why use it  
-It isolates your project's dependencies so that packages installed for one project don't conflict with another. After creating it, you activate it with:
-```source ./venv/bin/activate   # macOS/Linux```
-Once activated, pip install commands install packages only into that virtual environment.
-
-### virtualenv vs venv
-virtualenv is a third-party package (installed via pip install virtualenv) that predates Python's built-in venv. It's faster, supports older Python versions (like 2.6/2.7), and has more features — but both serve the same core purpose: isolating project dependencies.
