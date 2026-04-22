@@ -1,8 +1,7 @@
 
-Virtual env is a way in which u can separate different python environments for different projects.  
-Why would u want to do something like this?
-eg say u have multiple projects that all rely on single package like flask or django. Each of these projects might be using different version of django or flask.
-If u go and upgrade the version in ur global packages, it might break a couple of projects.It would be better if each of the projects had isolated environments where they had dependencies and packages that they need and the specific versions thats they needed.And thats what virtual env allows us to do .It allows us to make those different python environments.
+Virtual environment is a way in which u can separate different python environments for different projects.  
+#### Why would u want to do something like this?
+Say u have multiple projects that all rely on single package like flask or django. Each of these projects might be using different version of django or flask.If u go and upgrade the version in ur global packages, it might break a couple of projects.It would be better if each of the projects had isolated environments where they had dependencies and packages that they need and the specific versions thats they needed.And thats what virtual env allows us to do .It allows us to make those different python environments.
 
 ## Why Do We Need virtualenv in Python
 * Isolated Environment: A virtualenv (short for "virtual environment") creates an isolated environment for Python projects. This means that each project can have its own dependencies (libraries, modules, etc.), independent of other projects and the system-wide Python installation. This isolation helps avoid conflicts between packages and their versions when multiple projects are being developed simultaneously.
@@ -14,19 +13,20 @@ If u go and upgrade the version in ur global packages, it might break a couple o
 Install the virtual env package like so:
 
 ```pip install virtualenv```
-We will make a couple of virtual environments
+
+1.We will make a couple of virtual environments. For that we will create an Environments folder
 
 ```mkdir Environments
    cd Environments
-virtualenv project1_env
+virtualenv project1_env # first environment
 ```
-to activate the environment , 
+2.to activate the environment , 
 ```
 source project1_env/bin/activate
 
 which python  ->/Users/surbhikohli/Environments/project1_env/bin/python
 ```
-Now ur prompt will have name of ur virtual env: 
+Now ur prompt will have **name of ur virtual env**: 
 
 <img width="617" alt="Screenshot 2024-08-31 at 9 03 36 PM" src="https://github.com/user-attachments/assets/cdc49fb2-4e29-488d-911c-1ff603048295">  
 
