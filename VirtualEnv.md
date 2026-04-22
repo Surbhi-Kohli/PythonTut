@@ -184,8 +184,33 @@ sh venv/bin/activate       # changes happen in a subprocess and vanish
 - On Unix, file extensions are optional — the OS doesn't use them to determine how to run a file
 
 ---
+## 5 What is `--system-site-packages`?
 
-## 5. What's Inside the Environment Folder
+By default, a venv is **fully isolated** — it can only see packages you install inside it. If you create the venv with this flag, it **also** gets access to your global/system Python packages:
+
+```bash
+python -m venv --system-site-packages ./venv
+```
+
+```
+Standard venv (default):
+  venv sees:       [venv packages only]
+  system packages:  invisible
+
+--system-site-packages venv:
+  venv sees:       [venv packages] + [global/system packages]
+  system packages:  visible as a fallback
+```
+
+**When would you use it?**
+- A large package (like `numpy` or `torch`) is installed globally and you don't want to re-download it into every venv
+- You're on a system where certain packages are installed via the OS package manager (e.g., `apt install python3-xyz` on Ubuntu)
+
+**The catch:** This is exactly why `pip freeze --local` exists. Without `--local`, your `requirements.txt` gets bloated with global packages you didn't explicitly install for this project. Most people don't use this flag — full isolation (the default) is cleaner and avoids surprises.
+
+---
+
+## 6. What's Inside the Environment Folder
 
 ### Symlink vs Copy
 
@@ -206,7 +231,7 @@ Packages are always independent copies per environment, even if the same package
 
 ---
 
-## 6. `source` vs `sh` 
+## 7. `source` vs `sh` 
 
 | Command    | What it is             | Purpose                                          |
 |------------|------------------------|--------------------------------------------------|
@@ -223,7 +248,7 @@ Packages are always independent copies per environment, even if the same package
 
 ---
 
-## 7. Glob Patterns
+## 8. Glob Patterns
 
 A glob pattern is wildcard syntax for matching file/directory names. Relevant because pip extras use `[]` syntax and `.gitignore` uses globs.
 
