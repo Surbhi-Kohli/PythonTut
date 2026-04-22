@@ -63,7 +63,7 @@ We can make a couple of virtual environments. For that we will create an Environ
 | **Windows (cmd)**        | `venv\Scripts\activate.bat`      |
 | **Windows (PowerShell)** | `venv\Scripts\Activate.ps1`      |
 
-After activation your prompt changes to show the env name, and `python`/`pip` now point to the venv's copies:
+After activation your prompt changes to **show the env name**, and `python`/`pip` now point to the venv's copies:
 
 ```bash
 which python
