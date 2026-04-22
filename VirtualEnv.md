@@ -1,6 +1,7 @@
 
 Virtual env is a way in which u can separate different python environments for different projects.  
-Why would u want to do something like this? eg say u have multiple projects that all rely on single package like flask or django. Each of these projects might be using different version of django or flask.
+Why would u want to do something like this?
+eg say u have multiple projects that all rely on single package like flask or django. Each of these projects might be using different version of django or flask.
 If u go and upgrade the version in ur global packages, it might break a couple of projects.It would be better if each of the projects had isolated environments where they had dependencies and packages that they need and the specific versions thats they needed.And thats what virtual env allows us to do .It allows us to make those different python environments.
 
 ## Why Do We Need virtualenv in Python
@@ -11,8 +12,10 @@ If u go and upgrade the version in ur global packages, it might break a couple o
 * Avoiding Permission Issues: Installing packages globally (at the system level) may require administrative or root permissions. Virtual environments allow you to install packages locally for a specific project without needing special permissions.
 
 Install the virtual env package like so:
+
 ```pip install virtualenv```
 We will make a couple of virtual environments
+
 ```mkdir Environments
    cd Environments
 virtualenv project1_env
@@ -63,3 +66,27 @@ To delete
 
 ```vitualenv -p /usr/bin/python2.6(python version) <projectname>```
 The environments that we have here are only meant for ur dependencies and packages and not for the actual project files . You should not build ur project files within the virtual env
+
+## Newer version:
+what is python -m venv ./venv    doing
+
+```python -m venv ./venv```
+ creates a Python virtual environment in a folder called venv in the current directory.
+
+Breaking it down:
+
+* python — invokes the Python interpreter
+* -m venv — runs the built-in venv module as a script (-m means "run this module")
+* ./venv — the target directory where the virtual environment will be created
+
+#### What it actually creates
+A ./venv folder containing:
+
+  * Its own Python binary (a copy/symlink of the system Python)
+  * Its own pip
+  * An isolated site-packages directory for installing packages without affecting the global Python installation
+
+Why use it
+It isolates your project's dependencies so that packages installed for one project don't conflict with another. After creating it, you activate it with:
+```source ./venv/bin/activate   # macOS/Linux```
+Once activated, pip install commands install packages only into that virtual environment.
