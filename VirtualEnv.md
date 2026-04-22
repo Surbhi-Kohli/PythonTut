@@ -23,8 +23,7 @@ virtualenv project1_env
 to activate the environment , 
 ```
 source project1_env/bin/activate
-```
-```
+
 which python  ->/Users/surbhikohli/Environments/project1_env/bin/python
 ```
 Now ur prompt willhave name of ur virtual env
@@ -34,6 +33,7 @@ When u run ```pip list`` u see packages only within ur environment
 <img width="696" alt="Screenshot 2024-08-31 at 9 05 26 PM" src="https://github.com/user-attachments/assets/d4ff9a53-4d37-4edc-8a03-700e697d892e">
 
 ```pip freeze --local > requirements.txt```
+
 --local adds only the dependencies that are local to ur virtaul env in the requirement.txt file  
 
 <img width="820" alt="Screenshot 2024-08-31 at 9 17 16 PM" src="https://github.com/user-attachments/assets/5d61a3fb-f398-4b31-893d-b50b71615097">
@@ -62,7 +62,7 @@ activate: This is the script that is used to activate the virtual environment. R
 ```deactivate```
 
 To delete
-``` rm -rm project1_env
+``` rm -rm project1_env```
 
 ```vitualenv -p /usr/bin/python2.6(python version) <projectname>```
 The environments that we have here are only meant for ur dependencies and packages and not for the actual project files . You should not build ur project files within the virtual env
