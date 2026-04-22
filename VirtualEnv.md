@@ -116,10 +116,39 @@ my_project/
 
 **Important:** Never put your project files inside the `venv/` folder. The venv is disposable — you should be able to delete it and recreate it anytime from `requirements.txt`. The environment is only for dependencies and packages, not for actual project files.
 
+### Step 5: Save dependencies
 
-```pip freeze --local > requirements.txt```
+```bash
+pip list                                   # human-readable table of installed pkgs
+pip freeze                                 # machine-readable format (pkg==1.2.3)
+pip freeze --local > requirements.txt      # save venv-local deps to file --local adds only the dependencies that are local to ur virtaul env in the requirement.txt file  
+```
 
---local adds only the dependencies that are local to ur virtaul env in the requirement.txt file  
+`pip freeze` vs `pip freeze --local` — only matters if you created your venv with `--system-site-packages`:
+
+| Command              | Standard venv      | `--system-site-packages` venv |
+|----------------------|--------------------|-------------------------------|
+| `pip freeze`         | Venv packages only | Venv + global packages        |
+| `pip freeze --local` | Venv packages only | **Only** venv packages        |
+
+For standard venvs both give the same output. `--local` is a good habit.
+
+### Step 6: Deactivate when done
+
+```bash
+deactivate
+```
+
+Restores your original `PATH`, prompt, and removes the `VIRTUAL_ENV` variable.
+
+### Deleting an environment
+
+```bash
+rm -rf project1_env
+```
+
+Since a venv is just a folder, deleting it is all you need. Recreate anytime from `requirements.txt`.
+
 
 <img width="820" alt="Screenshot 2024-08-31 at 9 17 16 PM" src="https://github.com/user-attachments/assets/5d61a3fb-f398-4b31-893d-b50b71615097">  
 
