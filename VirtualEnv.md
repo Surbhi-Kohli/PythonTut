@@ -123,6 +123,7 @@ pip list                                   # human-readable table of installed p
 pip freeze                                 # machine-readable format (pkg==1.2.3)
 pip freeze --local > requirements.txt      # save venv-local deps to file --local adds only the dependencies that are local to ur virtaul env in the requirement.txt file  
 ```
+<img width="820" alt="Screenshot 2024-08-31 at 9 17 16 PM" src="https://github.com/user-attachments/assets/5d61a3fb-f398-4b31-893d-b50b71615097">  
 
 `pip freeze` vs `pip freeze --local` — only matters if you created your venv with `--system-site-packages`:
 
@@ -148,9 +149,20 @@ rm -rf project1_env
 ```
 
 Since a venv is just a folder, deleting it is all you need. Recreate anytime from `requirements.txt`.
+### Cheat sheet
+
+```bash
+python -m venv venv                        # 1. Create  (once per project)
+source venv/bin/activate                   # 2. Activate (every terminal session)
+pip install -r requirements.txt            # 3. Install  (once, or after git pull)
+# ... work ...
+pip freeze --local > requirements.txt      # 4. Save     (after adding new packages)
+deactivate                                 # 5. Done for the day
+```
+
+---
 
 
-<img width="820" alt="Screenshot 2024-08-31 at 9 17 16 PM" src="https://github.com/user-attachments/assets/5d61a3fb-f398-4b31-893d-b50b71615097">  
 
 #### Why We Need to Restart with the source Command:   
 When you create a virtual environment, you need to "activate" it to use it. The source command is used to run the activation script.
