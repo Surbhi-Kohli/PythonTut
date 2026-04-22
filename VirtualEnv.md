@@ -40,15 +40,15 @@ When u run ```pip list`` u see packages only within ur environment:
 
 <img width="820" alt="Screenshot 2024-08-31 at 9 17 16 PM" src="https://github.com/user-attachments/assets/5d61a3fb-f398-4b31-893d-b50b71615097">  
 
-Why We Need to Restart with the source Command
+#### Why We Need to Restart with the source Command:   
 When you create a virtual environment, you need to "activate" it to use it. The source command is used to run the activation script.
 
-What Happens When You Run source?
+#### What Happens When You Run source?
 Modifies Environment Variables: Running the source command modifies the shell's environment variables, particularly the PATH variable, to prioritize the Python interpreter and libraries of the virtual environment over the system-wide ones. This ensures that when you run python or pip, it uses the versions from the virtual environment.
 
-Sets the Shell Context: The command changes the shell context so that all subsequent commands will be executed within the virtual environment. It essentially "tells" your terminal to use the isolated environment you've created.
+* Sets the Shell Context: The command changes the shell context so that all subsequent commands will be executed within the virtual environment. It essentially "tells" your terminal to use the isolated environment you've created.
 
-Updates the Prompt: Often, activating a virtual environment also updates the terminal prompt (e.g., (venv)) to indicate that you are working inside a virtual environment.
+* Updates the Prompt: Often, activating a virtual environment also updates the terminal prompt (e.g., (venv)) to indicate that you are working inside a virtual environment.
 
 What Does <virtualenv>/bin/activate Represent?
 <virtualenv>: This is a placeholder for the directory where your virtual environment is located. When you create a virtual environment, you typically specify a directory name for it. For example, if you created a virtual environment named myenv, then <virtualenv> would be myenv.
