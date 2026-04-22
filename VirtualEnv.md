@@ -31,7 +31,7 @@ Now ur prompt will have **name of ur virtual env**:
 
 <img width="617" alt="Screenshot 2024-08-31 at 9 03 36 PM" src="https://github.com/user-attachments/assets/cdc49fb2-4e29-488d-911c-1ff603048295">  
 
-When u run ```pip list`` u see packages only within ur environment: 
+When u run ```pip list``` u see packages only within ur environment: 
 <img width="696" alt="Screenshot 2024-08-31 at 9 05 26 PM" src="https://github.com/user-attachments/assets/d4ff9a53-4d37-4edc-8a03-700e697d892e">  
 
 
