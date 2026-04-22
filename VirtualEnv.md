@@ -176,6 +176,32 @@ And deactivate  just undoes all of this — restores the old PATH, old prompt, a
 source venv/bin/activate   # changes stick in your current terminal
 sh venv/bin/activate       # changes happen in a subprocess and vanish
 ```
+#### source vs running a script normally                                                                                                        
+source is shell-specific — it only makes sense for shell scripts (bash/zsh). It reads the script line by line and executes each line as if you typed it directly into your current terminal. That's why environment changes stick.                                                                                                                                     
+For everything else (Python, Node, Ruby, etc.), source is irrelevant:                                                                                                                 
+```   
+  source script.sh       # runs in YOUR shell session — env changes stick                                                                                                               
+  sh script.sh           # runs in a NEW child shell — env changes vanish                                                                                                                                                                                                                                              
+  source app.py          # nonsensical — your shell tries to interpret Python syntax as bash                                                                                            
+  python app.py          # correct — Python interpreter runs it in a subprocess
+```                                                                
+
+#### subprocesses are the norm
+
+Every program you launch from your terminal runs as a subprocess — that's just how operating systems work:                                                       
+                                                                                                                                                ```                                    
+  python app.py          # subprocess                                                                                                                                                   
+  node server.js         # subprocess                                                                                                                                                   
+  sh script.sh           # subprocess                                                                                                                                                   
+  ./my_binary            # subprocess                                                                                                            ```
+
+  
+The only exception is source (and its synonym .), which is a special shell trick that says - don't create a subprocess, just run these shell commands right here in my current session.                                                                                                                                                                        
+                                                                                                                                                #### Why activate needs this trick                                                                                                                                                         
+activate is a shell script that modifies PATH. If it ran as a subprocess (like everything normally does), the modified PATH would exist only inside that subprocess and disappear     
+  immediately. source is the workaround — it bypasses the normal subprocess behavior so the PATH change applies to your actual terminal session.                                      
+                                                                                                                                                                                        
+This is a one-of-a-kind need. For running your actual code (python app.py, uvicorn, etc.), subprocesses are perfectly normal and expected.   
 
 ### About the `bin/activate` file
 
@@ -184,6 +210,7 @@ sh venv/bin/activate       # changes happen in a subprocess and vanish
 - On Unix, file extensions are optional — the OS doesn't use them to determine how to run a file
 
 ---
+
 ## 5 What is `--system-site-packages`?
 
 By default, a venv is **fully isolated** — it can only see packages you install inside it. If you create the venv with this flag, it **also** gets access to your global/system Python packages:
