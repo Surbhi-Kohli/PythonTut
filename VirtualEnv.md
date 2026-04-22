@@ -176,30 +176,6 @@ And deactivate  just undoes all of this — restores the old PATH, old prompt, a
 source venv/bin/activate   # changes stick in your current terminal
 sh venv/bin/activate       # changes happen in a subprocess and vanish
 ```
-#### source vs running a script normally                                                                                                        
-source is shell-specific — it only makes sense for shell scripts (bash/zsh). It reads the script line by line and executes each line as if you typed it directly into your current terminal. That's why environment changes stick.                                                                                                                                     
-For everything else (Python, Node, Ruby, etc.), source is irrelevant:                                                                                                                 
-```   
-  source script.sh       # runs in YOUR shell session — env changes stick                                                                                                               
-  sh script.sh           # runs in a NEW child shell — env changes vanish                                                                                                                                                                                                                                              
-  source app.py          # nonsensical — your shell tries to interpret Python syntax as bash                                                                                            
-  python app.py          # correct — Python interpreter runs it in a subprocess
-```                                                                
-
-#### subprocesses are the norm
-
-Every program you launch from your terminal runs as a subprocess — that's just how operating systems work:                                                
-  python app.py       # subprocess                                
-  node server.js      # subprocess                  
-  sh script.sh         # subprocess                      
-  ./my_binary     # subprocess
-  
-
-The only exception is source (and its synonym .) which is a special shell trick that says - don't create a subprocess, just run these shell commands right here in my current session.                                                                                                      
-
-#### Why activate needs this trick                                                                                                                                                         
-activate is a shell script that modifies PATH. If it ran as a subprocess (like everything normally does), the modified PATH would exist only inside that subprocess and disappear immediately. source is the workaround — it bypasses the normal subprocess behavior so the PATH change applies to your actual terminal session.
-This is a one-of-a-kind need. For running your actual code (python app.py, uvicorn, etc.), subprocesses are perfectly normal and expected.   
 
 ### About the `bin/activate` file
 
@@ -256,14 +232,23 @@ Packages are always independent copies per environment, even if the same package
 
 ---
 
-## 7. `source` vs `sh` 
+## 6. Shells, Shell Scripts, and `source`
 
-| Command    | What it is             | Purpose                                          |
-|------------|------------------------|--------------------------------------------------|
-| `source`   | Shell built-in         | Runs a script in your **current** shell session  |
-| `sh`       | Bourne Shell           | A shell interpreter / runs scripts in a **subprocess** |
+### What is a shell?
 
-### Shell family tree
+A **shell** is the program that runs inside your terminal. When you type commands like `ls`, `cd`, `pip install`, the shell is what reads and executes them. It's the layer between you and the operating system.
+
+```
+Terminal (the window)
+  └── Shell (bash/zsh — interprets your commands)
+        ├── shell script  → runs shell commands (source makes them run "here")
+        ├── python app.py → launches Python as a subprocess
+        └── ls, cd, etc.  → built-in shell operations
+```
+
+### Bash vs Zsh
+
+Two "brands" of the same thing:
 
 | Shell   | Full Name          | Notes                                  |
 |---------|--------------------|----------------------------------------|
@@ -271,7 +256,64 @@ Packages are always independent copies per environment, even if the same package
 | `bash`  | Bourne Again Shell | Upgraded `sh`, default on most Linux   |
 | `zsh`   | Z Shell            | Further upgraded, **default on macOS** |
 
+Both understand the same core commands (`ls`, `cd`, `source`, `export`, etc.). Zsh adds extras (better autocomplete, themes, glob patterns like `[]` needing quotes). For day-to-day work, they're almost interchangeable.
+
+### What is a shell script?
+
+A text file containing shell commands — the same commands you'd type manually, saved to a file so you can run them together:
+
+```bash
+# setup.sh — a simple shell script
+echo "Setting up project..."
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+echo "Done!"
+```
+
+Instead of typing those 4 commands one by one, you run `sh setup.sh` or `source setup.sh`. The `venv/bin/activate` file is itself a shell script — it contains commands like `export PATH=...` and `export VIRTUAL_ENV=...`.
+
+### Subprocesses are the norm
+
+**Every** program you launch from your terminal runs as a subprocess — that's just how operating systems work:
+
+```bash
+python app.py          # subprocess
+node server.js         # subprocess
+sh script.sh           # subprocess
+./my_binary            # subprocess
+```
+
+The **only exception** is `source` (and its synonym `.`), which is a special shell trick that says "don't create a subprocess, run these shell commands right here in my current session."
+
+### Why `activate` needs this trick
+
+`activate` is a shell script that modifies `PATH`. If it ran as a subprocess (like everything normally does), the modified `PATH` would exist only inside that subprocess and disappear immediately. `source` bypasses the normal subprocess behavior so the `PATH` change applies to your actual terminal session.
+
+This is a one-of-a-kind need. For running actual code (`python app.py`, `uvicorn`, etc.), subprocesses are perfectly normal and expected.
+
+### `source` is shell-only
+
+`source` only makes sense for **shell scripts**. For everything else (Python, Node, Ruby), it's irrelevant:
+
+```bash
+source script.sh       # runs in YOUR shell — env changes stick
+sh script.sh           # runs in a NEW child shell — env changes vanish
+
+source app.py          # nonsensical — shell tries to interpret Python as bash
+python app.py          # correct — Python interpreter runs it in a subprocess
+```
+
+### `source` vs `sh` vs `ssh`
+
+| Command    | What it is             | Purpose                                          |
+|------------|------------------------|--------------------------------------------------|
+| `source`   | Shell built-in         | Runs a script in your **current** shell session  |
+| `sh`       | Bourne Shell           | A shell interpreter / runs scripts in a **subprocess** |
+
+
 ---
+
 
 ## 8. Glob Patterns
 
