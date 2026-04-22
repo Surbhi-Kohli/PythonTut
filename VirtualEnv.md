@@ -16,15 +16,16 @@ Install the virtual env package like so:
 
 1.We will make a couple of virtual environments. For that we will create an Environments folder
 
-```mkdir Environments
+```
+   mkdir Environments
    cd Environments
-virtualenv project1_env # first environment
+   virtualenv project1_env # first environment
 ```
 2.to activate the environment , 
 ```
 source project1_env/bin/activate
 
-which python  ->/Users/surbhikohli/Environments/project1_env/bin/python
+which python  ->/Users/surbhikohli/Environments/project1_env/bin/python The path is within our virtual environment project1_env
 ```
 Now ur prompt will have **name of ur virtual env**: 
 
