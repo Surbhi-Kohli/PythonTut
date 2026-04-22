@@ -86,7 +86,10 @@ A ./venv folder containing:
   * Its own pip
   * An isolated site-packages directory for installing packages without affecting the global Python installation
 
-Why use it
+Why use it  
 It isolates your project's dependencies so that packages installed for one project don't conflict with another. After creating it, you activate it with:
 ```source ./venv/bin/activate   # macOS/Linux```
 Once activated, pip install commands install packages only into that virtual environment.
+
+### virtualenv vs venv
+virtualenv is a third-party package (installed via pip install virtualenv) that predates Python's built-in venv. It's faster, supports older Python versions (like 2.6/2.7), and has more features — but both serve the same core purpose: isolating project dependencies.
