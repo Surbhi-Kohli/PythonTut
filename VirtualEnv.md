@@ -188,17 +188,17 @@ For everything else (Python, Node, Ruby, etc.), source is irrelevant:
 
 #### subprocesses are the norm
 
-Every program you launch from your terminal runs as a subprocess — that's just how operating systems work:                                                       
+Every program you launch from your terminal runs as a subprocess — that's just how operating systems work:                                                
   python app.py       # subprocess                                
   node server.js      # subprocess                  
   sh script.sh         # subprocess                      
   ./my_binary     # subprocess
+  
 
+The only exception is source (and its synonym .) which is a special shell trick that says - don't create a subprocess, just run these shell commands right here in my current session.                                                                                                      
 
-The only exception is source (and its synonym .) which is a special shell trick that says - don't create a subprocess, just run these shell commands right here in my current session.                                                                                                                                                                        
-                                                                                                                                                #### Why activate needs this trick                                                                                                                                                         
-activate is a shell script that modifies PATH. If it ran as a subprocess (like everything normally does), the modified PATH would exist only inside that subprocess and disappear immediately. source is the workaround — it bypasses the normal subprocess behavior so the PATH change applies to your actual terminal session.                                      
-                                                                                                                                                                                        
+#### Why activate needs this trick                                                                                                                                                         
+activate is a shell script that modifies PATH. If it ran as a subprocess (like everything normally does), the modified PATH would exist only inside that subprocess and disappear immediately. source is the workaround — it bypasses the normal subprocess behavior so the PATH change applies to your actual terminal session.
 This is a one-of-a-kind need. For running your actual code (python app.py, uvicorn, etc.), subprocesses are perfectly normal and expected.   
 
 ### About the `bin/activate` file
