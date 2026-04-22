@@ -64,6 +64,7 @@ We can make a couple of virtual environments. For that we will create an Environ
 | **Windows (PowerShell)** | `venv\Scripts\Activate.ps1`      |
 
 After activation your prompt changes to **show the env name**, and `python`/`pip` now point to the venv's copies:
+<img width="617" alt="Screenshot 2024-08-31 at 9 03 36 PM" src="https://github.com/user-attachments/assets/cdc49fb2-4e29-488d-911c-1ff603048295"> 
 
 ```bash
 which python
@@ -82,7 +83,7 @@ python app/main.py
 pip install fastapi
 ```
 And deactivate (line 4–32 of the same file) just undoes all of this — restores the old PATH, old prompt, and removes VIRTUAL_ENV.
-Now ur prompt will have **name of ur virtual env**: 
+
 ### Step 3: Install packages
 
 ```bash
@@ -95,7 +96,7 @@ pip install -r requirements.txt        # install from a saved requirements file
 > **zsh note:** Square brackets `[]` are glob patterns in zsh. Always quote them: `"fastapi[all]"` not `fastapi[all]`.
 
 
-<img width="617" alt="Screenshot 2024-08-31 at 9 03 36 PM" src="https://github.com/user-attachments/assets/cdc49fb2-4e29-488d-911c-1ff603048295">  
+ 
 
 When u run ```pip list``` u see packages only within ur environment: 
 <img width="696" alt="Screenshot 2024-08-31 at 9 05 26 PM" src="https://github.com/user-attachments/assets/d4ff9a53-4d37-4edc-8a03-700e697d892e">  
