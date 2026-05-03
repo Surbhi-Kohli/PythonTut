@@ -351,6 +351,236 @@ bin: This is a subdirectory inside the virtual environment directory. On Unix-li
 activate: This is the script that is used to activate the virtual environment. Running this script with the source command sets up your shell to use the virtual environment's Python interpreter and libraries.
 
 
+## What is `site-packages`?
+
+`site-packages` is the folder where pip installs third-party packages. When you `pip install something`, the files go here. When Python does `import something`, it looks in this folder.
+
+```
+venv/
+└── lib/
+    └── python3.12/
+        └── site-packages/    <- packages live here
+            ├── requests/
+            ├── fastapi/
+            └── numpy/
+```
+
+### Why the name?
+
+- **"site"** = your local installation (as opposed to Python's built-in standard library like `os`, `sys`, `json`)
+- **"packages"** = third-party packages you installed
+
+### Where to find it
+
+```python
+import site
+print(site.getsitepackages())
+
+# Global: /usr/lib/python3.12/site-packages/
+# Venv:   /project/venv/lib/python3.12/site-packages/
+```
+
+On **Windows** the path is slightly different: `venv\Lib\site-packages\`
+
+---
+
+## What "Its Own pip Binary" Means
+
+A **binary** (or executable) is simply a file you can run directly as a command from the terminal, without needing to invoke another program first.
+
+```bash
+pip install fastapi      # "pip" here is a binary — you run it directly
+python app.py            # "python" is a binary, but app.py is just a script passed to it
+```
+
+When you create a venv, it creates its own `pip` binary inside `venv/bin/`:
+
+```
+venv/
+├── bin/
+│   ├── python   → symlink to system Python 3.12
+│   ├── pip      <- venv's own pip
+│   ├── pip3
+│   └── pip3.12
+├── lib/
+│   └── python3.12/
+│       └── site-packages/
+└── pyvenv.cfg
+```
+
+This pip is configured to install into **this venv's site-packages only** — not global.
+
+```bash
+# With venv activated:
+which pip
+# /Users/you/project/venv/bin/pip   <- installs to this venv only
+
+# Without venv:
+which pip
+# /usr/local/bin/pip                <- installs globally
+```
+
+### What makes a file a binary/executable?
+
+1. Has a **shebang line** (tells the OS which interpreter to use):
+```python
+#!/usr/bin/env python3
+print("hello")
+```
+
+2. Has **execute permission**:
+```bash
+chmod +x myscript.py
+./myscript.py    # now runs directly without typing "python" first
+```
+
+---
+
+## `source` Runs in Current Shell, Not a Subprocess
+
+Every program you launch from your terminal normally runs as a **subprocess** — a separate child process:
+
+```bash
+python app.py       # subprocess — spawns, runs, exits
+pip install x       # subprocess
+./myscript.py      # subprocess
+```
+
+`source` is the exception. It runs commands **in your current shell** — no new process is created.
+
+```bash
+# Wrong — runs in subprocess, PATH changes are lost when it exits
+./venv/bin/activate
+
+# Correct — runs in current shell, PATH changes persist
+source venv/bin/activate
+```
+
+### Analogy
+
+- `source` = reading instructions aloud to yourself (you change)
+- subprocess = telling someone else to follow instructions (they change, you don't)
+
+This is why `activate` **must** use `source` — it needs to change your shell's `PATH` variable, and that can only happen in the current shell.
+
+---
+
+## venv Doesn't Install a Separate Python
+
+The venv **reuses** your existing Python installation via a symlink:
+
+```bash
+python -m venv venv
+```
+
+```
+venv/
+├── bin/python → /usr/local/bin/python3.12  (symlink, not a copy)
+├── lib/python3.12/site-packages/           (empty, just for this project)
+└── pyvenv.cfg                              (config pointing to base Python)
+```
+
+It only isolates **packages**, not Python itself. If you want a different Python version, you install it separately (via `brew`, `pyenv`, etc.) and then create a venv with it:
+
+```bash
+python3.11 -m venv venv11   # uses 3.11
+python3.12 -m venv venv12   # uses 3.12
+```
+
+---
+
+## Per-Project vs Global: Python vs Node.js
+
+| | Python | Node.js/React |
+|--|--------|---------------|
+| Default install location | **Global** | **Per project** (`node_modules/`) |
+| Per-project isolation | Manual (create a virtual env) | Automatic |
+| Dependency file | `requirements.txt` / `pyproject.toml` | `package.json` |
+| Lock file | `requirements.lock` / `poetry.lock` | `package-lock.json` |
+
+In Node, you just write `package.json` and run `npm install` — packages go into `node_modules/` automatically. In Python, you have to **opt in** to isolation by creating a venv first.
+
+### Python equivalent of the Node workflow
+
+```bash
+# Node way (automatic)
+npm install              # reads package.json -> installs to ./node_modules
+
+# Python way (manual setup first)
+python -m venv venv      # create local env (like creating node_modules/)
+source venv/bin/activate # activate it
+pip install -r requirements.txt   # now installs locally
+```
+
+### Modern Python tools that behave like npm
+
+```bash
+# uv (fast, closest to npm experience)
+uv init                  # creates pyproject.toml (like npm init)
+uv add fastapi           # installs + adds to pyproject.toml (like npm install fastapi)
+uv run app.py            # runs with correct env automatically
+```
+
+`uv` still creates a `.venv/` under the hood, but you never have to create or activate it manually.
+
+### Why per-project is better
+
+```
+Project A needs: requests==2.25
+Project B needs: requests==2.31
+
+Global: impossible (one overwrites the other)
+Per project: no problem
+```
+
+The only downside of per-project is disk space (duplicated packages), which is cheap.
+
+---
+
+## How Python Resolves Imports (Lookup Order)
+
+When you write `import requests`, Python checks `sys.path` **in order, top to bottom**, and stops at the first match:
+
+```python
+import sys
+print(sys.path)
+```
+
+Typical order (with venv active):
+
+```
+1. Current script's directory         <- is there a requests.py here? No
+2. venv/lib/python3.12/site-packages/ <- found! Stop here.
+3. Standard library                   <- never reached
+4. Global site-packages               <- never reached
+```
+
+### Key point
+
+If a virtual env is active, global `site-packages` is **removed** from `sys.path` entirely (by default). So if a package isn't in your venv, you get `ModuleNotFoundError` — it won't silently fall back to the global one.
+
+It's not env -> global fallback. It's env **instead of** global.
+
+---
+
+## `pip list` Shows the Active Environment
+
+```bash
+# No virtual env active -> shows global packages
+pip list
+
+# Virtual env active -> shows only that env's packages
+source venv/bin/activate
+pip list
+```
+
+How to check which environment you're in:
+
+```bash
+which pip
+# /usr/local/bin/pip              -> global
+# /path/to/project/venv/bin/pip   -> virtual env
+```
 
 
 
