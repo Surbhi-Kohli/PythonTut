@@ -83,13 +83,6 @@ pip --version
 python -m pip --version
 ```
 
-| Situation | Fix |
-|-----------|-----|
-| System Python on Linux (Debian/Ubuntu) | `sudo apt install python3-pip` |
-| Somehow missing | `python -m ensurepip` |
-
-If you installed Python from python.org or via `brew` on Mac, pip is already there.
-
 ### Essential pip commands
 
 ```bash
