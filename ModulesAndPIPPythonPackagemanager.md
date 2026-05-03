@@ -22,7 +22,8 @@ pip install Pympler
 pip install pandas
 ```
 
-```pip list```
+```pip list```  
+
 <img width="254" alt="Screenshot 2024-08-31 at 5 37 10 PM" src="https://github.com/user-attachments/assets/8ae7cb4b-4a0b-404d-9701-37781fd21716">  
 
 
